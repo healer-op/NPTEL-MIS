@@ -1,0 +1,829 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MIS — NPTEL Exam Notes</title>
+
+<style>
+:root {
+  --bg:#0d0f1a; --sf:#13162a; --s2:#1a1e35;
+  --bd:#2a2f50; --ac:#7c6af7; --a2:#f7a26a;
+  --a3:#4fd8b0; --a4:#f76a8a; --tx:#e8e9f5;
+  --mu:#8890b0;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+
+html {
+  scroll-behavior:smooth;
+  scroll-padding-top:calc(60px + env(safe-area-inset-top,0px));
+}
+
+* { box-sizing:border-box; margin:0; padding:0; }
+
+body {
+  background:var(--bg);
+  color:var(--tx);
+  font:15px/1.7 'DM Sans',system-ui,sans-serif;
+}
+
+.hero {
+  text-align:center;
+  padding:56px 24px 40px;
+  background:linear-gradient(135deg,#0d0f1a,#1a0a2e 50%,#0d1f2d);
+  border-bottom:1px solid var(--bd);
+}
+
+.badge {
+  display:inline-block;
+  border:1px solid rgba(124,106,247,.4);
+  background:rgba(124,106,247,.15);
+  color:var(--ac);
+  padding:4px 14px;
+  border-radius:20px;
+  font:12px monospace;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+
+h1 {
+  font:900 clamp(1.9rem,6vw,3.2rem) Georgia,serif;
+  background:linear-gradient(135deg,#fff 30%,#a8a0ff 70%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:10px;
+}
+
+.hero p {
+  color:var(--mu);
+  max-width:600px;
+  margin:0 auto 20px;
+}
+
+.stats {
+  display:flex;
+  gap:28px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.stats b {
+  display:block;
+  font:700 1.8rem Georgia,serif;
+  color:var(--ac);
+}
+
+.stats span {
+  font-size:11px;
+  color:var(--mu);
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+nav {
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  z-index:9;
+  background:var(--sf);
+  border-bottom:1px solid var(--bd);
+  display:flex;
+  overflow-x:auto;
+  padding:0 12px;
+  scrollbar-width:none;
+}
+
+nav a {
+  color:var(--mu);
+  text-decoration:none;
+  padding:14px 12px;
+  font-size:13px;
+  font-weight:500;
+  white-space:nowrap;
+  border-bottom:2px solid transparent;
+}
+
+nav a:hover {
+  color:var(--tx);
+  border-color:var(--ac);
+}
+
+.wrap {
+  max-width:960px;
+  margin:0 auto;
+  padding:36px 18px 60px;
+}
+
+.wk { margin-bottom:48px; }
+
+.wh {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:20px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--bd);
+  flex-wrap:wrap;
+}
+
+.wn {
+  font:11px monospace;
+  color:var(--ac);
+  background:rgba(124,106,247,.1);
+  border:1px solid rgba(124,106,247,.3);
+  padding:3px 10px;
+  border-radius:4px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.wt { font:700 1.4rem Georgia,serif; }
+
+.mn {
+  background:#1e1530;
+  border:1px solid #6b5ce7;
+  border-left:4px solid #6b5ce7;
+  border-radius:10px;
+  padding:16px 20px;
+  margin-bottom:16px;
+}
+
+.mn i {
+  display:block;
+  font:normal 10px monospace;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--ac);
+  margin-bottom:6px;
+}
+
+.mn strong { color:#c4beff; font-size:1.05rem; }
+.mn p { color:var(--mu); font-size:13px; margin-top:4px; }
+
+table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:13.5px;
+  margin-bottom:16px;
+  background:var(--sf);
+  border:1px solid var(--bd);
+  border-radius:10px;
+  overflow:hidden;
+  display:block;
+  overflow-x:auto;
+}
+
+th {
+  background:rgba(124,106,247,.1);
+  color:var(--ac);
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-size:11px;
+  padding:9px 14px;
+  text-align:left;
+}
+
+td {
+  padding:9px 14px;
+  border-top:1px solid rgba(42,47,80,.6);
+  vertical-align:top;
+}
+
+td:first-child {
+  color:var(--a2);
+  font-weight:600;
+  white-space:nowrap;
+}
+
+.tr {
+  background:#1a1020;
+  border:1px solid rgba(247,106,138,.4);
+  border-left:4px solid var(--a4);
+  border-radius:8px;
+  padding:12px 16px;
+  font-size:13px;
+}
+
+.tr i {
+  display:block;
+  font:normal 10px monospace;
+  letter-spacing:2px;
+  color:var(--a4);
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+
+#learn {
+  background:linear-gradient(180deg,#0d0f1a,#0e0b1e);
+  border-top:1px solid var(--bd);
+  padding:48px 0 70px;
+}
+
+.q { max-width:720px; margin:0 auto; padding:0 18px; }
+
+.q h2 {
+  text-align:center;
+  font:900 2rem Georgia,serif;
+  margin-bottom:6px;
+}
+
+.q>p {
+  text-align:center;
+  color:var(--mu);
+  margin-bottom:22px;
+}
+
+.fl {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:center;
+  margin-bottom:22px;
+}
+
+.fb {
+  padding:6px 14px;
+  border-radius:20px;
+  border:1px solid var(--bd);
+  background:var(--sf);
+  color:var(--mu);
+  font:500 13px inherit;
+  cursor:pointer;
+}
+
+.fb.on {
+  background:rgba(124,106,247,.15);
+  border-color:var(--ac);
+  color:#c4beff;
+}
+
+.sc {
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  margin-bottom:18px;
+  flex-wrap:wrap;
+}
+
+.sc div {
+  background:var(--sf);
+  border:1px solid var(--bd);
+  border-radius:10px;
+  padding:8px 20px;
+  text-align:center;
+  font-size:11px;
+  color:var(--mu);
+  text-transform:uppercase;
+}
+
+.sc b {
+  display:block;
+  font:700 1.5rem Georgia,serif;
+}
+
+.pb {
+  background:var(--s2);
+  border-radius:9px;
+  height:6px;
+  margin-bottom:20px;
+}
+
+.pb div {
+  height:6px;
+  border-radius:9px;
+  background:linear-gradient(90deg,var(--ac),var(--a3));
+  width:0;
+  transition:width .4s;
+}
+
+#card {
+  background:var(--sf);
+  border:1px solid var(--bd);
+  border-radius:16px;
+  padding:22px 20px;
+}
+
+#qt { font-weight:600; font-size:1.05rem; margin:10px 0 14px; }
+
+.meta {
+  font:10px monospace;
+  color:var(--ac);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.o {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  width:100%;
+  text-align:left;
+  padding:12px 16px;
+  margin-bottom:9px;
+  border-radius:10px;
+  border:1.5px solid var(--bd);
+  background:var(--s2);
+  color:#c8cce8;
+  font:500 14px inherit;
+  cursor:pointer;
+}
+
+.o:hover:not(:disabled) { border-color:var(--ac); }
+
+.o:disabled { cursor:default; opacity:1; }
+
+.o b {
+  min-width:26px;
+  height:26px;
+  border-radius:50%;
+  background:rgba(124,106,247,.15);
+  display:grid;
+  place-items:center;
+  font:600 11px monospace;
+  color:var(--ac);
+}
+
+.o.c {
+  border-color:var(--a3);
+  background:rgba(79,216,176,.12);
+  color:#9efde0;
+}
+
+.o.w {
+  border-color:var(--a4);
+  background:rgba(247,106,138,.1);
+  color:#ffb3c1;
+}
+
+#fbk {
+  display:none;
+  border-radius:10px;
+  padding:14px 16px;
+  margin:6px 0 12px;
+  font-size:13.5px;
+  color:#c8cce8;
+}
+
+#nx {
+  display:none;
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:10px;
+  background:linear-gradient(135deg,#7c6af7,#5b4de0);
+  color:#fff;
+  font:600 15px inherit;
+  cursor:pointer;
+}
+
+#res { display:none; text-align:center; padding:30px; }
+
+footer {
+  text-align:center;
+  padding:26px;
+  color:var(--mu);
+  font-size:13px;
+  border-top:1px solid var(--bd);
+}
+
+@media (prefers-color-scheme:light) {
+  :root:not([data-theme=dark]) { --bg:#0d0f1a; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- QUIZ SOUND EFFECTS -->
+<audio id="correctSound" src="./duolingo-correct.mp3" preload="auto"></audio>
+<audio id="wrongSound" src="./duolingo-wrong.mp3" preload="auto"></audio>
+
+<div class="hero">
+  <div class="badge">NPTEL · IIT Kharagpur · Exam Prep</div>
+  <h1>Management Information Systems</h1>
+  <p>Week-wise notes + mnemonics for Weeks 1–12, built from the lecture transcripts (Prof. Surojit Mukherjee) and your assignments.</p>
+  <div class="stats">
+    <div><b>12</b><span>Weeks</span></div>
+    <div><b>60</b><span>Lectures</span></div>
+    <div><b id="nq">0</b><span>Quiz Qs</span></div>
+  </div>
+</div>
+
+<nav id="nav"></nav>
+<div class="wrap" id="notes"></div>
+
+<div id="learn">
+  <div class="q">
+    <h2>Practice Quiz</h2>
+    <p>Pick a week, answer, get instant feedback.</p>
+
+    <div class="fl" id="fl"></div>
+
+    <div class="sc">
+      <div><b id="sC" style="color:#4fd8b0">0</b>Correct</div>
+      <div><b id="sW" style="color:#f76a8a">0</b>Wrong</div>
+      <div><b id="sS" style="color:#f7a26a">0</b>Streak</div>
+    </div>
+
+    <div class="pb"><div id="pg"></div></div>
+
+    <div id="card">
+      <span class="meta" id="mt"></span>
+      <div id="qt"></div>
+      <div id="ow"></div>
+      <div id="fbk"></div>
+      <button id="nx" onclick="nxt()">Next →</button>
+    </div>
+
+    <div id="res">
+      <div style="font-size:3.5rem" id="re"></div>
+      <h3 style="font:700 1.6rem Georgia,serif;margin:8px 0" id="rt"></h3>
+      <p style="color:var(--mu);margin-bottom:18px" id="rs"></p>
+      <button class="fb on" onclick="go(cur)">Try again 🔁</button>
+    </div>
+  </div>
+</div>
+
+<footer>NPTEL · Management Information Systems · notes from lectures 1–60 &amp; assignments 0–12</footer>
+
+<script>
+const W=[
+{n:1,t:"Introduction to MIS (L1–5)",m:"Dogs Inspire Kind Wizards → Data, Information, Knowledge, Wisdom",mp:"Input → Processing → Output, with Feedback correcting the input.",r:[["MIS goal","Transform data into useful information for decision-making"],["Data","Raw facts and figures"],["Information","Data arranged in a meaningful form"],["IS activities","Input (captures raw data), Processing (raw → meaningful), Output (used for decisions/actions), Feedback (corrects/evaluates input)"],["Technical foundation","Computers and software are the technical foundation, not the complete IS (IS = people + process + tech)"],["Trend","Mobile digital platforms transform business"]],x:"Data ≠ processed facts. Processed facts = information."},
+
+{n:2,t:"Databases, Warehouses, BI & Data Mining (L6–9)",m:"Bad Boys Fear Real Fire, Dad → Bit, Byte, Field, Record, File, Database",mp:"Smallest unit = Bit. Related files = Database.",r:[["Entity","Person, place or thing about which data is stored; its attributes are descriptors (e.g. Grade of STUDENT)"],["Redundancy","Duplicate data stored in multiple files"],["Inconsistency","Same attribute has different values"],["Primary key","Unique identification of records"],["DBMS","Interface between applications and databases; reduces inconsistency"],["BI tool","OLAP (data warehouse + analytics); data mining finds hidden patterns"]],x:"Redundancy (duplicate) causes inconsistency (conflicting values) — not the same thing."},
+
+{n:3,t:"ERP (L10–14)",m:"SAP R/3 = 3 tiers → Presentation, Application, Database",mp:"GUI sits in the Presentation layer.",r:[["SAP","Systems, Applications & Products in Data Processing"],["Architecture","Three-tier client-server"],["Benefits","Integrated supply chain, reduced order-to-cash cycle time, fewer silos/duplication, better supplier mgmt"],["BPR","ERP facilitates Business Process Reengineering"],["ERP affects","Business processes, company culture AND employee skills (all of the above)"],["Change mgmt","Biggest ERP risk is people/culture, not just technology"]],x:"ERP REDUCES order-to-cash time; it never aims to increase redundancy or manual work."},
+
+{n:4,t:"CRM, SCM, SRM, PLM (L15–19)",m:"Up = Suppliers, Down = Customers; Pull = demand-driven",mp:"Bullwhip: small demand change at retail → big swings upstream.",r:[["Supply chain","Network of resources, organizations, technologies and processes"],["Upstream","Suppliers / raw material side"],["Downstream","Delivery of product to customers"],["Internal SC","Inside the factory"],["Bullwhip effect","Demand information gets distorted along the chain; fix by improving communication and information sharing"],["Push vs Pull","Push = forecast-driven; Pull / demand-driven = driven by actual orders"]],x:"JIT: components arrive as they are needed."},
+
+{n:5,t:"Manufacturing, Materials, Quality IS (L20–24)",m:"MPS → BOM → MRP → CRP",mp:"Plan what, list parts, plan materials, check capacity.",r:[["Production order","Formally authorizes start of production"],["Independent demand","From market/customer; dependent demand is derived from it via BOM"],["BOM","Hierarchical listing of components to manufacture a product"],["MPS","Master Production Schedule: when finished products must be completed"],["CRP","Is there enough production capacity?"],["Tactical info","Product mix under limited capacity, quality control measures (strategic = location, acquisitions)"],["SPC","Statistical Process Control — quality systems"]],x:"Make-to-order = built after customer order; Make-to-stock = built to forecast."},
+
+{n:6,t:"Marketing, Sales, Finance, HR IS (L25–29)",m:"Marketing IS = Internal reports, Intelligence, Research",mp:"Marketing Intelligence = scans the external environment.",r:[["Marketing IS aim","Support marketing decisions via relevant information"],["Internal Reports","Orders, sales, inventory from inside"],["Marketing Intelligence","Continuously scans competitors and market trends"],["Segmentation data","Customer databases (demographics, purchase history, psychographics)"],["Forecasting","Time-series analysis is a quantitative method; Delphi / expert panels are qualitative"],["Accounts receivable","Tracks money owed BY customers"],["Purchase side","Vendor evaluation, vendor rating, transport & shipment arrangement"]],x:"Receivable = customers owe you; Payable = you owe suppliers."},
+
+{n:7,t:"IS Strategy, BSC & Data Centers (L30–34)",m:"BSC = F-C-P-L → Financial, Customer, Process, Learning",mp:"Manufacturing Capacity is NOT a BSC dimension.",r:[["Strategy","Function of Competition, Positioning and Capabilities"],["Business Diamond","Organizational design: People, Structure, Tasks, Information & Control"],["IS Strategy Triangle","Change one corner → evaluate the other two"],["IS infrastructure","Hardware, software, network — not advertising"],["Strategic systems analysis","Industry structure and competitive forces"],["Balanced Scorecard","Four dimensions; KPIs = Key Performance Indicators; keeps managers on strategic vision"]],x:"BSC is not financial-only."},
+
+{n:8,t:"E-Commerce (L35–39)",m:"B2C = Amazon, B2B = IndiaMART",mp:"Personalization = message; Customization = product.",r:[["E-commerce","Digitally enabled commercial transactions involving exchange of value"],["Unique features","Ubiquity, global reach, universal standards, richness, interactivity, information density, personalization/customization, social tech"],["Digital markets","Information is plentiful, cheap and accurate"],["Personalization","Adjusting marketing messages by clickstream"],["Customization","Changing a delivered product per user preference"],["Types","B2C (Amazon), B2B (IndiaMART), C2C, social and mobile commerce"]],x:"Personalization ≠ Customization."},
+
+{n:9,t:"Cloud, IoT, Big Data (L40–45)",m:"I-P-S → IaaS, PaaS, SaaS (Infra, Platform, Software)",mp:"4Vs: Volume, Velocity, Variety, Veracity.",r:[["Cloud benefits","Usage-based pricing, resource pooling, measured use — NOT increased setup time"],["SaaS","Salesforce CRM"],["PaaS","Vendor hosts runtime, libraries, tools; vendor handles infrastructure and hypervisor security"],["Private cloud","Operated solely for one organization"],["Hybrid cloud","Private + public combined (sensitive data on private, traffic spikes on public)"],["Sensors / actuators","Sensors capture environment → electrical signal; actuators change state of devices"],["Privacy by design","Consider privacy from the start and throughout"],["Variety vs Veracity","Variety = different formats/sources; Veracity = quality (missing data, spam bots)"],["Provider","DigitalOcean is a cloud provider; Data as a Platform (DaaP) is not a service model"]],x:"Don't confuse Variety (formats) with Veracity (trustworthiness)."},
+
+{n:10,t:"KMS, DSS, ESS, Expert Systems, LMS (L46–50)",m:"Simon's stages: I-D-C → Intelligence, Design, Choice",mp:"Wisdom = knowing when, where and how to apply knowledge.",r:[["Wisdom","Applying knowledge; knowing when, where, how"],["DSS","Semi-structured decisions; applies knowledge to e.g. pricing"],["ESS","Non-routine decisions needing judgment, evaluation and insight"],["Neural networks","Discover patterns in data"],["Genetic algorithms","Evaluate and optimize alternative solutions"],["Expert system","Knowledge as rules or object frames; inference engine reasons by forward chaining (facts → conclusions) or backward chaining (goal → facts)"],["MOODLE","Modular Object-Oriented Dynamic Learning Environment"]],x:"Forward = from facts to conclusion; Backward = from goal."},
+
+{n:11,t:"Ethics, Privacy & Security (L51–55)",m:"IT BCPs: IT = DRP, Management = BCP",mp:"Disaster Recovery = IT restores; Business Continuity = business keeps running.",r:[["Privacy","Right to be left alone; must be balanced against society's needs"],["Cookies","Small text files placed on your hard drive to identify and track visits"],["Panopticon effect","Unknown surveillance makes people self-regulate"],["Man-in-the-middle","Secretly intercepts, reads, may alter communication"],["Phishing","Deceptive emails/messages to steal identity"],["VPN","Virtual Private Network"],["DRP vs BCP","IT restoring servers = DRP; management manual workaround = BCP"],["GLBA","Financial institutions must secure and keep confidential customers' non-public personal information"]],x:"Phishing = email lure; Pharming = redirection via DNS."},
+
+{n:12,t:"Global Organizations & Shared Services (L56–60)",m:"Shared Services = Same service, Single hub, Saves cost",mp:"Centralize repeatable functions in low-cost locations.",r:[["Shared services","Share delivery of similar services across locations/countries to reduce cost, enhance efficiency, improve quality (L58)"],["Example","Central purchasing for many country units; hubs in Poland/Romania (multilingual, lower salaries) or India/China"],["Requires","A strong IT / information-system backbone"],["Other topics","Global strategies, offshoring / transitioning global IT systems, globalization in a flat world"]],x:"Shared services runs on IS platforms; it is not just a business function."}
+];
+
+const Q=[
+[1,"What is the primary goal of MIS?",["Increase hardware sales","Generate raw data","Transform data into useful information for decision-making","Replace managers"],2,"MIS turns data into information for decisions."],
+[1,"Correct hierarchy?",["Wisdom–Knowledge–Information–Data","Data–Information–Knowledge–Wisdom","Information–Data–Wisdom–Knowledge","Knowledge–Data–Information–Wisdom"],1,"DIKW."],
+[1,"Data can best be described as:",["Processed facts","Meaningful insights","Raw facts and figures","Strategic decisions"],2,"Data is raw; processed data is information."],
+[1,"Information is:",["Unprocessed data","Data arranged in a meaningful form","A collection of hardware","Organizational culture"],1,"Meaningful form of data."],
+[1,"Which activity captures raw data?",["Processing","Feedback","Input","Output"],2,"Input captures raw data."],
+[1,"Which activity converts raw data into information?",["Feedback","Processing","Input","Distribution"],1,"Processing."],
+[1,"Feedback is used to:",["Increase storage","Correct or evaluate inputs","Replace processing","Eliminate outputs"],1,"Feedback corrects/evaluates input."],
+[1,"Computers and software are:",["Complete information systems","Organizational assets","Technical foundations of information systems","Decision makers"],2,"Foundation only; IS also needs people and processes."],
+[1,"Technology trend transforming business:",["Typewriters","Mobile digital platforms","Telegraph","Mechanical calculators"],1,"Mobile digital platforms."],
+
+[2,"Smallest unit of data a computer handles:",["Byte","Field","Bit","Record"],2,"Bit."],
+[2,"A collection of related files is a:",["Record","Field","Database","Byte"],2,"Database."],
+[2,"An entity is:",["A software package","A person, place or thing about which data is stored","A collection of records","A query"],1,"Entity definition."],
+[2,"Attribute of a STUDENT entity:",["Database","Grade","Folder","File"],1,"Grade describes the student."],
+[2,"Data redundancy refers to:",["Missing data","Duplicate data stored in multiple files","Incorrect entry","Unauthorized access"],1,"Duplicate data."],
+[2,"Data inconsistency occurs when:",["Data is encrypted","Stored in a warehouse","Same attribute has different values","Data is normalized"],2,"Conflicting values."],
+[2,"A primary key is used for:",["Backup","Compression","Unique identification of records","Data mining"],2,"Uniqueness."],
+[2,"A DBMS acts as:",["Spreadsheet tool","Interface between applications and databases","Programming language","Web browser"],1,"Interface."],
+[2,"Major BI tool:",["OLAP","Compiler","Antivirus","Browser"],0,"OLAP."],
+
+[3,"SAP stands for:",["Systems Applications & Products in Data Processing","Standard Applications Processing","Systems and Products Platform","Software Applications Processing"],0,"SAP."],
+[3,"SAP R/3 follows:",["Two-tier","Four-tier","Three-tier","Single-tier"],2,"Presentation, Application, Database."],
+[3,"In SAP R/3, GUI components belong to:",["Database layer","Application layer","Presentation layer","Middleware"],2,"Presentation layer."],
+[3,"Key benefit expected from ERP:",["Increased inventory","Integrated supply chain management","More manual effort","More isolated systems"],1,"Integration."],
+[3,"ERP helps reduce:",["Order-to-cash cycle time","Data availability","Productivity","Automation"],0,"Shorter order-to-cash."],
+[3,"ERP facilitates:",["Business Process Reengineering","Data duplication","Information silos","Stand-alone processing"],0,"BPR."],
+[3,"ERP affects:",["Business processes","Company culture","Employee skills","All of the above"],3,"All three."],
+
+[4,"Bullwhip effect means:",["Inventory is eliminated","Demand information gets distorted along the supply chain","Production exceeds quality","Warehouses are automated"],1,"Demand distortion upstream."],
+[4,"A method of reducing bullwhip effect:",["Increase batch sizes","Improve communication across the supply chain","Reduce information sharing","Increase shortages"],1,"Share information."],
+[4,"Demand-driven supply chains use a:",["Push system","Pull system","Manual system","Forecast-only system"],1,"Pull."],
+[4,"Downstream supply chain focuses on:",["Raw material suppliers","Internal warehouses","Product delivery to customers","Employee management"],2,"Customers."],
+[4,"Internal supply chain activities occur:",["Between countries","Inside the factory","Only with customers","Only with suppliers"],1,"Inside the organization."],
+[4,"Supply chain is best described as:",["Single manufacturing unit","Distribution warehouse","Network of resources, organizations, technologies and processes","Marketing department"],2,"A network."],
+[4,"JIT: components arrive:",["Months before production","After delivery","As they are needed","Yearly"],2,"As needed."],
+
+[5,"Which document authorizes the start of production?",["Goods receipt note","Production order","Sales quotation","Purchase requisition"],1,"Production order."],
+[5,"Optimal product mix under limited capacity is:",["Strategic","Tactical","Operational","Transaction processing"],1,"Tactical."],
+[5,"Independent vs dependent demand:",["Independent derived from BOM","Dependent from customers","Independent from market; dependent derived from it","Both from suppliers"],2,"Dependent demand is derived."],
+[5,"A BOM is:",["Financial statement","Hierarchical listing of components for a product","Quality report","Vendor evaluation"],1,"BOM."],
+[5,"MRP input that specifies when finished products must be done:",["Inventory records","Capacity plan","Master Production Schedule","Routing sheet"],2,"MPS."],
+[5,"CRP is concerned with:",["Forecasting demand","Whether sufficient capacity exists","Designing products","Customer satisfaction"],1,"Capacity."],
+
+[6,"Subsystem scanning competitors and market trends:",["Internal Reports","Marketing Intelligence","Pricing","Sales Forecasting"],1,"Intelligence."],
+[6,"Purpose of marketing information systems:",["Automate payroll","Support marketing decisions through relevant information","Manage production schedules","Monitor attendance"],1,"Decision support."],
+[6,"Segmentation data mostly comes from:",["Customer databases","Payroll records","SPC systems","Capacity planning"],0,"Customer databases."],
+[6,"Accounts receivable tracks:",["Supplier payments","Money owed by customers","Payroll","Inventory"],1,"Receivable = from customers."],
+
+[7,"Business strategy is a function of:",["Competition, Positioning, Capabilities","Hardware, Software, Data","Revenue, Cost, Profit","Customers, Vendors, Employees"],0,"Strategy."],
+[7,"Model for organizational design:",["SWOT","Business Diamond","BCG Matrix","Ansoff Matrix"],1,"Business Diamond."],
+[7,"NOT an IS infrastructure component:",["Hardware","Software","Network","Advertising"],3,"Advertising."],
+[7,"Changing one corner of the IS Strategy Triangle requires:",["No action","Evaluating the other two corners","Hiring more staff","Increasing profits"],1,"Triangle must stay aligned."],
+[7,"NOT a BSC dimension:",["Customer","Financial","Business Process","Manufacturing Capacity"],3,"Learning & Growth is the 4th."],
+[7,"KPIs stands for:",["Key Performance Indicators","Knowledge Processing Instructions","Key Product Integrators","Knowledge Performance Interfaces"],0,"KPI."],
+
+[8,"E-commerce is:",["Physical transactions only","Digitally enabled commercial transactions involving exchange of value","Internal communication","Manufacturing automation"],1,"Definition."],
+[8,"In digital markets, information is:",["Limited and costly","Plentiful, cheap and accurate","Only for firms","Difficult to access"],1,"Lower information asymmetry."],
+[8,"Adjusting marketing messages by clickstream is:",["Customization","Segmentation","Personalization","Automation"],2,"Personalization."],
+[8,"Changing a delivered product per user preference:",["Personalization","Customization","Standardization","Diversification"],1,"Customization."],
+[8,"Amazon is:",["B2B","C2C","B2C","G2C"],2,"B2C."],
+[8,"IndiaMART is mainly:",["B2B","C2C","Social commerce","Mobile commerce"],0,"B2B."],
+
+[9,"NOT a benefit of cloud computing:",["Usage-based pricing","Resource pooling","Increased set-up time","Measured use"],2,"Cloud reduces setup time."],
+[9,"Salesforce CRM is:",["IaaS","PaaS","SaaS","DaaS"],2,"SaaS."],
+[9,"Dedicated servers for sensitive data plus shared network for traffic spikes:",["Public","Community","Private","Hybrid"],3,"Hybrid."],
+[9,"Tools that change state of devices are:",["Sensors","IoT","Actuators","Proximity sensor"],2,"Actuators."],
+[9,"Primary role of a sensor:",["Convert electrical signal to action","Capture environmental data as an electrical signal","Store data in cloud","Power the device"],1,"Sensing."],
+[9,"Privacy by design means:",["Optional add-on near the end","Considering privacy from the start and throughout","Patching after breaches","User picks every setting"],1,"Proactive."],
+[9,"Which is a cloud service provider?",["Netflix","JioHotstar","Reliance Digital","DigitalOcean"],3,"DigitalOcean."],
+[9,"Not a cloud service model:",["IaaS","PaaS","SaaS","Data as a Platform (DaaP)"],3,"DaaP."],
+
+[10,"Knowing when, where and how to apply knowledge:",["Cognition","Wisdom","Tacit","Culture"],1,"Wisdom."],
+[10,"System used to apply knowledge to decide new product pricing:",["TPS","Office Automation","SCM","DSS"],3,"DSS."],
+[10,"Neural networks vs genetic algorithms:",["NN optimize, GA find patterns","NN find patterns; GA evaluate/optimize alternatives","NN use evolution","Identical"],1,"Roles."],
+[10,"Executive Support Systems address:",["Routine structured decisions","Non-routine decisions needing judgment and insight","Day-to-day tactical decisions","Transaction processing"],1,"ESS."],
+[10,"NOT a stage of Simon's decision-making:",["Intelligence","Design","Choice","Scope"],3,"I-D-C."],
+[10,"Inference engine moving from symptoms to diagnoses uses:",["Backward chaining","Goal-driven analysis","Breadth-first reasoning","Forward chaining"],3,"Facts to conclusions."],
+[10,"MOODLE stands for:",["Modern Object-Oriented Dynamic Learning Environment","Modular Object-Oriented Dynamic Learning Environment","Managed Open Online Distance Learning Experience","Modular Open Online Digital Learning Engine"],1,"Modular Object-Oriented..."],
+
+[11,"Right to privacy:",["Absolute, over society","Must be balanced against society's needs","Always below public right to know","Doesn't exist"],1,"Balanced."],
+[11,"Cookies are:",["Small text files on your drive to identify/track visits","Hidden history deleters","Password stealers","Temporary cables"],0,"Tracking files."],
+[11,"Employees comply due to possible hidden monitoring:",["Hawthorne Effect","Panopticon Effect","Groupthink","Cognitive Dissonance"],1,"Panopticon."],
+[11,"Man-in-the-middle attack:",["Overloads servers","Secretly intercepts and may alter communications","Installs disguised malware","Brute-forces passwords"],1,"Interception."],
+[11,"VPN stands for:",["Visual Private Network","Virtual Private Node","Virtual Private Network","Visual Private Node"],2,"VPN."],
+[11,"IT restores servers; management uses manual process:",["Both DRP","Both BCP","IT = BCP, Mgmt = DRP","IT = DRP, Mgmt = BCP"],3,"DRP = IT; BCP = business."],
+[11,"GLBA requires financial institutions to:",["Publish balances","Secure and keep confidential non-public personal info","Share data with third parties","Destroy records after a year"],1,"Security + confidentiality."],
+
+[12,"Shared services aim to:",["Increase duplication","Share delivery of similar services across locations to cut cost and improve quality","Eliminate IT","Outsource only manufacturing"],1,"Lecture 58."],
+[12,"Why host shared services in Poland/Romania?",["No languages","Multilingual staff and lower salaries","No taxes","Only for retail"],1,"Multi-language skills, lower cost."],
+[12,"Shared services depend heavily on:",["Informal processes","A good IT/information-system backbone","Paper records","Local autonomy only"],1,"IS platform."]
+];
+
+document.getElementById('nq').textContent = Q.length;
+
+document.getElementById('nav').innerHTML =
+  W.map(w => `<a href="#w${w.n}">Wk ${w.n}</a>`).join('') +
+  '<a href="#learn" style="color:#4fd8b0">⚡ Quiz</a>';
+
+document.getElementById('notes').innerHTML = W.map(w => `
+<section class="wk" id="w${w.n}">
+  <div class="wh">
+    <span class="wn">Week ${String(w.n).padStart(2,'0')}</span>
+    <span class="wt">${w.t}</span>
+  </div>
+  <div class="mn">
+    <i>🧠 Mnemonic</i>
+    <strong>${w.m}</strong>
+    <p>${w.mp}</p>
+  </div>
+  <table>
+    <thead><tr><th>Topic</th><th>Key point</th></tr></thead>
+    <tbody>${w.r.map(r =>
+      `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`
+    ).join('')}</tbody>
+  </table>
+  <div class="tr"><i>⚡ Exam trap</i>${w.x}</div>
+</section>`).join('');
+
+let pool = [], i = 0, c = 0, wr = 0, s = 0, cur = 'all';
+
+const fl = document.getElementById('fl');
+
+fl.innerHTML = ['all', ...W.map(w => w.n)].map(k =>
+  `<button class="fb${k == 'all' ? ' on' : ''}" onclick="go('${k}',this)">${
+    k == 'all' ? 'All' : 'Week ' + k
+  }</button>`
+).join('');
+
+function sh(a) {
+  a = [...a];
+  for (let k = a.length - 1; k > 0; k--) {
+    const j = Math.floor(Math.random() * (k + 1));
+    [a[k], a[j]] = [a[j], a[k]];
+  }
+  return a;
+}
+
+/* =========================================
+   SOUND EFFECTS
+   ========================================= */
+
+let soundUnlocked = false;
+
+/*
+  Browsers may block audio until the user interacts
+  with the page. This function prepares the sounds
+  after the first interaction.
+*/
+function unlockSounds() {
+  if (soundUnlocked) return;
+
+  const correctSound = document.getElementById('correctSound');
+  const wrongSound = document.getElementById('wrongSound');
+
+  [correctSound, wrongSound].forEach(sound => {
+    sound.load();
+  });
+
+  soundUnlocked = true;
+}
+
+/*
+  Play the selected sound and stop the other sound
+  so that the two effects never overlap.
+*/
+function playSound(type) {
+  const correctSound = document.getElementById('correctSound');
+  const wrongSound = document.getElementById('wrongSound');
+
+  const sound = type === 'correct' ? correctSound : wrongSound;
+  const otherSound = type === 'correct' ? wrongSound : correctSound;
+
+  otherSound.pause();
+  otherSound.currentTime = 0;
+
+  sound.pause();
+  sound.currentTime = 0;
+
+  const playback = sound.play();
+
+  if (playback !== undefined) {
+    playback.catch(error => {
+      console.warn(
+        'Quiz sound could not be played. Check the MP3 file path.',
+        error
+      );
+    });
+  }
+}
+
+/* =========================================
+   QUIZ LOGIC
+   ========================================= */
+
+function go(k, b) {
+  cur = k;
+
+  if (b) {
+    document.querySelectorAll('.fb').forEach(x =>
+      x.classList.remove('on')
+    );
+    b.classList.add('on');
+  }
+
+  pool = sh(k == 'all' ? Q : Q.filter(q => q[0] == k));
+
+  i = c = wr = s = 0;
+
+  sc();
+
+  document.getElementById('res').style.display = 'none';
+  document.getElementById('card').style.display = 'block';
+
+  load();
+}
+
+function sc() {
+  document.getElementById('sC').textContent = c;
+  document.getElementById('sW').textContent = wr;
+  document.getElementById('sS').textContent =
+    s + (s >= 3 ? '🔥' : '');
+}
+
+function load() {
+  if (i >= pool.length) {
+    fin();
+    return;
+  }
+
+  const q = pool[i];
+
+  document.getElementById('mt').textContent =
+    `Week ${q[0]} · Q${i + 1}/${pool.length}`;
+
+  document.getElementById('qt').textContent = q[1];
+
+  const fbk = document.getElementById('fbk');
+  const nx = document.getElementById('nx');
+  const ow = document.getElementById('ow');
+
+  fbk.style.display = 'none';
+  nx.style.display = 'none';
+  nx.disabled = false;
+
+  document.getElementById('pg').style.width =
+    Math.round(i / pool.length * 100) + '%';
+
+  ow.innerHTML = '';
+
+  q[2].forEach((o, k) => {
+    const b = document.createElement('button');
+
+    b.className = 'o';
+    b.innerHTML = `<b>${'ABCD'[k]}</b><span></span>`;
+
+    b.lastChild.textContent = o;
+
+    b.onclick = () => pick(k, q);
+
+    ow.appendChild(b);
+  });
+}
+
+function pick(k, q) {
+  const ow = document.getElementById('ow');
+  const bs = ow.children;
+
+  /*
+    Prevent multiple answers on the same question.
+    This also prevents repeated sound playback.
+  */
+  if ([...bs].some(b => b.disabled)) return;
+
+  unlockSounds();
+
+  [...bs].forEach(b => b.disabled = true);
+
+  const ok = k === q[3];
+
+  if (ok) {
+    c++;
+    s++;
+
+    bs[k].classList.add('c');
+
+    // Correct answer: play Duolingo correct sound.
+    playSound('correct');
+  } else {
+    wr++;
+    s = 0;
+
+    bs[k].classList.add('w');
+    bs[q[3]].classList.add('c');
+
+    // Wrong answer: play Duolingo wrong sound.
+    playSound('wrong');
+  }
+
+  const fbk = document.getElementById('fbk');
+  const nx = document.getElementById('nx');
+
+  fbk.style.display = 'block';
+
+  fbk.style.background = ok
+    ? 'rgba(79,216,176,.08)'
+    : 'rgba(247,106,138,.08)';
+
+  fbk.style.border = '1px solid ' +
+    (ok ? '#4fd8b0' : '#f76a8a');
+
+  fbk.textContent =
+    (ok ? '✅ Correct! ' : '❌ Not quite. ') + q[4];
+
+  sc();
+
+  i++;
+
+  nx.style.display = 'block';
+}
+
+function nxt() {
+  load();
+}
+
+function fin() {
+  document.getElementById('card').style.display = 'none';
+  document.getElementById('res').style.display = 'block';
+
+  const p = Math.round(c / Math.max(1, c + wr) * 100);
+
+  document.getElementById('re').textContent =
+    p >= 90 ? '🏆' : p >= 70 ? '🎯' : '📚';
+
+  document.getElementById('rt').textContent =
+    p >= 90 ? 'Outstanding!' :
+    p >= 70 ? 'Great work!' :
+    'Keep practicing!';
+
+  document.getElementById('rs').textContent =
+    `${c}/${c + wr} correct (${p}%)`;
+
+  document.getElementById('pg').style.width = '100%';
+}
+
+/* Start the quiz */
+go('all');
+</script>
+</body>
+</html>
