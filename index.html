@@ -1,829 +1,118 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>MIS — NPTEL Exam Notes</title>
-
 <style>
-:root {
-  --bg:#0d0f1a; --sf:#13162a; --s2:#1a1e35;
-  --bd:#2a2f50; --ac:#7c6af7; --a2:#f7a26a;
-  --a3:#4fd8b0; --a4:#f76a8a; --tx:#e8e9f5;
-  --mu:#8890b0;
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px);
-  padding-bottom:env(safe-area-inset-bottom,0px);
-}
-
-html {
-  scroll-behavior:smooth;
-  scroll-padding-top:calc(60px + env(safe-area-inset-top,0px));
-}
-
-* { box-sizing:border-box; margin:0; padding:0; }
-
-body {
-  background:var(--bg);
-  color:var(--tx);
-  font:15px/1.7 'DM Sans',system-ui,sans-serif;
-}
-
-.hero {
-  text-align:center;
-  padding:56px 24px 40px;
-  background:linear-gradient(135deg,#0d0f1a,#1a0a2e 50%,#0d1f2d);
-  border-bottom:1px solid var(--bd);
-}
-
-.badge {
-  display:inline-block;
-  border:1px solid rgba(124,106,247,.4);
-  background:rgba(124,106,247,.15);
-  color:var(--ac);
-  padding:4px 14px;
-  border-radius:20px;
-  font:12px monospace;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  margin-bottom:16px;
-}
-
-h1 {
-  font:900 clamp(1.9rem,6vw,3.2rem) Georgia,serif;
-  background:linear-gradient(135deg,#fff 30%,#a8a0ff 70%);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-  margin-bottom:10px;
-}
-
-.hero p {
-  color:var(--mu);
-  max-width:600px;
-  margin:0 auto 20px;
-}
-
-.stats {
-  display:flex;
-  gap:28px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-
-.stats b {
-  display:block;
-  font:700 1.8rem Georgia,serif;
-  color:var(--ac);
-}
-
-.stats span {
-  font-size:11px;
-  color:var(--mu);
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
-
-nav {
-  position:sticky;
-  top:env(safe-area-inset-top,0px);
-  z-index:9;
-  background:var(--sf);
-  border-bottom:1px solid var(--bd);
-  display:flex;
-  overflow-x:auto;
-  padding:0 12px;
-  scrollbar-width:none;
-}
-
-nav a {
-  color:var(--mu);
-  text-decoration:none;
-  padding:14px 12px;
-  font-size:13px;
-  font-weight:500;
-  white-space:nowrap;
-  border-bottom:2px solid transparent;
-}
-
-nav a:hover {
-  color:var(--tx);
-  border-color:var(--ac);
-}
-
-.wrap {
-  max-width:960px;
-  margin:0 auto;
-  padding:36px 18px 60px;
-}
-
-.wk { margin-bottom:48px; }
-
-.wh {
-  display:flex;
-  align-items:center;
-  gap:14px;
-  margin-bottom:20px;
-  padding-bottom:12px;
-  border-bottom:1px solid var(--bd);
-  flex-wrap:wrap;
-}
-
-.wn {
-  font:11px monospace;
-  color:var(--ac);
-  background:rgba(124,106,247,.1);
-  border:1px solid rgba(124,106,247,.3);
-  padding:3px 10px;
-  border-radius:4px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
-
-.wt { font:700 1.4rem Georgia,serif; }
-
-.mn {
-  background:#1e1530;
-  border:1px solid #6b5ce7;
-  border-left:4px solid #6b5ce7;
-  border-radius:10px;
-  padding:16px 20px;
-  margin-bottom:16px;
-}
-
-.mn i {
-  display:block;
-  font:normal 10px monospace;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:var(--ac);
-  margin-bottom:6px;
-}
-
-.mn strong { color:#c4beff; font-size:1.05rem; }
-.mn p { color:var(--mu); font-size:13px; margin-top:4px; }
-
-table {
-  width:100%;
-  border-collapse:collapse;
-  font-size:13.5px;
-  margin-bottom:16px;
-  background:var(--sf);
-  border:1px solid var(--bd);
-  border-radius:10px;
-  overflow:hidden;
-  display:block;
-  overflow-x:auto;
-}
-
-th {
-  background:rgba(124,106,247,.1);
-  color:var(--ac);
-  text-transform:uppercase;
-  letter-spacing:1px;
-  font-size:11px;
-  padding:9px 14px;
-  text-align:left;
-}
-
-td {
-  padding:9px 14px;
-  border-top:1px solid rgba(42,47,80,.6);
-  vertical-align:top;
-}
-
-td:first-child {
-  color:var(--a2);
-  font-weight:600;
-  white-space:nowrap;
-}
-
-.tr {
-  background:#1a1020;
-  border:1px solid rgba(247,106,138,.4);
-  border-left:4px solid var(--a4);
-  border-radius:8px;
-  padding:12px 16px;
-  font-size:13px;
-}
-
-.tr i {
-  display:block;
-  font:normal 10px monospace;
-  letter-spacing:2px;
-  color:var(--a4);
-  text-transform:uppercase;
-  margin-bottom:4px;
-}
-
-#learn {
-  background:linear-gradient(180deg,#0d0f1a,#0e0b1e);
-  border-top:1px solid var(--bd);
-  padding:48px 0 70px;
-}
-
-.q { max-width:720px; margin:0 auto; padding:0 18px; }
-
-.q h2 {
-  text-align:center;
-  font:900 2rem Georgia,serif;
-  margin-bottom:6px;
-}
-
-.q>p {
-  text-align:center;
-  color:var(--mu);
-  margin-bottom:22px;
-}
-
-.fl {
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  justify-content:center;
-  margin-bottom:22px;
-}
-
-.fb {
-  padding:6px 14px;
-  border-radius:20px;
-  border:1px solid var(--bd);
-  background:var(--sf);
-  color:var(--mu);
-  font:500 13px inherit;
-  cursor:pointer;
-}
-
-.fb.on {
-  background:rgba(124,106,247,.15);
-  border-color:var(--ac);
-  color:#c4beff;
-}
-
-.sc {
-  display:flex;
-  gap:14px;
-  justify-content:center;
-  margin-bottom:18px;
-  flex-wrap:wrap;
-}
-
-.sc div {
-  background:var(--sf);
-  border:1px solid var(--bd);
-  border-radius:10px;
-  padding:8px 20px;
-  text-align:center;
-  font-size:11px;
-  color:var(--mu);
-  text-transform:uppercase;
-}
-
-.sc b {
-  display:block;
-  font:700 1.5rem Georgia,serif;
-}
-
-.pb {
-  background:var(--s2);
-  border-radius:9px;
-  height:6px;
-  margin-bottom:20px;
-}
-
-.pb div {
-  height:6px;
-  border-radius:9px;
-  background:linear-gradient(90deg,var(--ac),var(--a3));
-  width:0;
-  transition:width .4s;
-}
-
-#card {
-  background:var(--sf);
-  border:1px solid var(--bd);
-  border-radius:16px;
-  padding:22px 20px;
-}
-
-#qt { font-weight:600; font-size:1.05rem; margin:10px 0 14px; }
-
-.meta {
-  font:10px monospace;
-  color:var(--ac);
-  letter-spacing:1px;
-  text-transform:uppercase;
-}
-
-.o {
-  display:flex;
-  gap:12px;
-  align-items:center;
-  width:100%;
-  text-align:left;
-  padding:12px 16px;
-  margin-bottom:9px;
-  border-radius:10px;
-  border:1.5px solid var(--bd);
-  background:var(--s2);
-  color:#c8cce8;
-  font:500 14px inherit;
-  cursor:pointer;
-}
-
-.o:hover:not(:disabled) { border-color:var(--ac); }
-
-.o:disabled { cursor:default; opacity:1; }
-
-.o b {
-  min-width:26px;
-  height:26px;
-  border-radius:50%;
-  background:rgba(124,106,247,.15);
-  display:grid;
-  place-items:center;
-  font:600 11px monospace;
-  color:var(--ac);
-}
-
-.o.c {
-  border-color:var(--a3);
-  background:rgba(79,216,176,.12);
-  color:#9efde0;
-}
-
-.o.w {
-  border-color:var(--a4);
-  background:rgba(247,106,138,.1);
-  color:#ffb3c1;
-}
-
-#fbk {
-  display:none;
-  border-radius:10px;
-  padding:14px 16px;
-  margin:6px 0 12px;
-  font-size:13.5px;
-  color:#c8cce8;
-}
-
-#nx {
-  display:none;
-  width:100%;
-  padding:12px;
-  border:0;
-  border-radius:10px;
-  background:linear-gradient(135deg,#7c6af7,#5b4de0);
-  color:#fff;
-  font:600 15px inherit;
-  cursor:pointer;
-}
-
-#res { display:none; text-align:center; padding:30px; }
-
-footer {
-  text-align:center;
-  padding:26px;
-  color:var(--mu);
-  font-size:13px;
-  border-top:1px solid var(--bd);
-}
-
-@media (prefers-color-scheme:light) {
-  :root:not([data-theme=dark]) { --bg:#0d0f1a; }
-}
-</style>
-</head>
-
-<body>
-
-<!-- QUIZ SOUND EFFECTS -->
-<audio id="correctSound" src="./duolingo-correct.mp3" preload="auto"></audio>
-<audio id="wrongSound" src="./duolingo-wrong.mp3" preload="auto"></audio>
-
-<div class="hero">
-  <div class="badge">NPTEL · IIT Kharagpur · Exam Prep</div>
-  <h1>Management Information Systems</h1>
-  <p>Week-wise notes + mnemonics for Weeks 1–12, built from the lecture transcripts (Prof. Surojit Mukherjee) and your assignments.</p>
-  <div class="stats">
-    <div><b>12</b><span>Weeks</span></div>
-    <div><b>60</b><span>Lectures</span></div>
-    <div><b id="nq">0</b><span>Quiz Qs</span></div>
-  </div>
-</div>
-
+:root{--bg:#0d0f1a;--sf:#13162a;--s2:#1a1e35;--bd:#2a2f50;--ac:#7c6af7;--a2:#f7a26a;--a3:#4fd8b0;--a4:#f76a8a;--tx:#e8e9f5;--mu:#8890b0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(60px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font:15px/1.7 'DM Sans',system-ui,sans-serif}
+.hero{text-align:center;padding:56px 24px 40px;background:linear-gradient(135deg,#0d0f1a,#1a0a2e 50%,#0d1f2d);border-bottom:1px solid var(--bd)}
+.badge{display:inline-block;border:1px solid rgba(124,106,247,.4);background:rgba(124,106,247,.15);color:var(--ac);padding:4px 14px;border-radius:20px;font:12px monospace;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+h1{font:900 clamp(1.9rem,6vw,3.2rem) Georgia,serif;background:linear-gradient(135deg,#fff 30%,#a8a0ff 70%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+.hero p{color:var(--mu);max-width:600px;margin:0 auto 20px}
+.stats{display:flex;gap:28px;justify-content:center;flex-wrap:wrap}.stats b{display:block;font:700 1.8rem Georgia,serif;color:var(--ac)}.stats span{font-size:11px;color:var(--mu);text-transform:uppercase;letter-spacing:1px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--sf);border-bottom:1px solid var(--bd);display:flex;overflow-x:auto;padding:0 12px;scrollbar-width:none}
+nav a{color:var(--mu);text-decoration:none;padding:14px 12px;font-size:13px;font-weight:500;white-space:nowrap;border-bottom:2px solid transparent}nav a:hover{color:var(--tx);border-color:var(--ac)}
+.wrap{max-width:960px;margin:0 auto;padding:36px 18px 60px}
+.wk{margin-bottom:48px}
+.wh{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--bd);flex-wrap:wrap}
+.wn{font:11px monospace;color:var(--ac);background:rgba(124,106,247,.1);border:1px solid rgba(124,106,247,.3);padding:3px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:1px}
+.wt{font:700 1.4rem Georgia,serif}
+.mn{background:#1e1530;border:1px solid #6b5ce7;border-left:4px solid #6b5ce7;border-radius:10px;padding:16px 20px;margin-bottom:16px}
+.mn i{display:block;font:normal 10px monospace;letter-spacing:2px;text-transform:uppercase;color:var(--ac);margin-bottom:6px}
+.mn strong{color:#c4beff;font-size:1.05rem}.mn p{color:var(--mu);font-size:13px;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:16px;background:var(--sf);border:1px solid var(--bd);border-radius:10px;overflow:hidden;display:block;overflow-x:auto}
+th{background:rgba(124,106,247,.1);color:var(--ac);text-transform:uppercase;letter-spacing:1px;font-size:11px;padding:9px 14px;text-align:left}
+td{padding:9px 14px;border-top:1px solid rgba(42,47,80,.6);vertical-align:top}td:first-child{color:var(--a2);font-weight:600;white-space:nowrap}
+.tr{background:#1a1020;border:1px solid rgba(247,106,138,.4);border-left:4px solid var(--a4);border-radius:8px;padding:12px 16px;font-size:13px}
+.tr i{display:block;font:normal 10px monospace;letter-spacing:2px;color:var(--a4);text-transform:uppercase;margin-bottom:4px}
+#learn{background:linear-gradient(180deg,#0d0f1a,#0e0b1e);border-top:1px solid var(--bd);padding:48px 0 70px}
+.q{max-width:720px;margin:0 auto;padding:0 18px}.q h2{text-align:center;font:900 2rem Georgia,serif;margin-bottom:6px}.q>p{text-align:center;color:var(--mu);margin-bottom:22px}
+.fl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:22px}
+.fb{padding:6px 14px;border-radius:20px;border:1px solid var(--bd);background:var(--sf);color:var(--mu);font:500 13px inherit;cursor:pointer}.fb.on{background:rgba(124,106,247,.15);border-color:var(--ac);color:#c4beff}
+.sc{display:flex;gap:14px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}.sc div{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:8px 20px;text-align:center;font-size:11px;color:var(--mu);text-transform:uppercase}.sc b{display:block;font:700 1.5rem Georgia,serif}
+.pb{background:var(--s2);border-radius:9px;height:6px;margin-bottom:20px}.pb div{height:6px;border-radius:9px;background:linear-gradient(90deg,var(--ac),var(--a3));width:0;transition:width .4s}
+#card{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:22px 20px}
+#qt{font-weight:600;font-size:1.05rem;margin:10px 0 14px}.meta{font:10px monospace;color:var(--ac);letter-spacing:1px;text-transform:uppercase}
+.o{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:12px 16px;margin-bottom:9px;border-radius:10px;border:1.5px solid var(--bd);background:var(--s2);color:#c8cce8;font:500 14px inherit;cursor:pointer}
+.o:hover:not(:disabled){border-color:var(--ac)}.o b{min-width:26px;height:26px;border-radius:50%;background:rgba(124,106,247,.15);display:grid;place-items:center;font:600 11px monospace;color:var(--ac)}
+.o.c{border-color:var(--a3);background:rgba(79,216,176,.12);color:#9efde0}.o.w{border-color:var(--a4);background:rgba(247,106,138,.1);color:#ffb3c1}
+#fbk{display:none;border-radius:10px;padding:14px 16px;margin:6px 0 12px;font-size:13.5px;color:#c8cce8}#nx{display:none;width:100%;padding:12px;border:0;border-radius:10px;background:linear-gradient(135deg,#7c6af7,#5b4de0);color:#fff;font:600 15px inherit;cursor:pointer}
+#res{display:none;text-align:center;padding:30px}
+details{background:var(--sf);border:1px solid var(--bd);border-radius:8px;margin:6px 0;padding:8px 14px;font-size:13.5px}summary{cursor:pointer;font-weight:600;color:#c4beff}details ul{margin:8px 0 2px 18px;color:#c8cce8}details li{margin-bottom:5px}.lc{margin-top:16px}.lc h4{font:11px monospace;letter-spacing:2px;text-transform:uppercase;color:var(--a3)}
+footer{text-align:center;padding:26px;color:var(--mu);font-size:13px;border-top:1px solid var(--bd)}
+@media (prefers-color-scheme:light){:root:not([data-theme=dark]){--bg:#0d0f1a}}
+</style></head><body>
+<div class="hero"><div class="badge">NPTEL · IIT Kharagpur · Exam Prep</div><h1>Management Information Systems</h1>
+<p>Week-wise notes + mnemonics for Weeks 1–12, with lecture-wise key lines from all 60 transcripts and every assignment question (Weeks 0–12).</p>
+<div class="stats"><div><b>12</b><span>Weeks</span></div><div><b>60</b><span>Lectures</span></div><div><b id="nq">0</b><span>Quiz Qs</span></div></div></div>
 <nav id="nav"></nav>
 <div class="wrap" id="notes"></div>
-
-<div id="learn">
-  <div class="q">
-    <h2>Practice Quiz</h2>
-    <p>Pick a week, answer, get instant feedback.</p>
-
-    <div class="fl" id="fl"></div>
-
-    <div class="sc">
-      <div><b id="sC" style="color:#4fd8b0">0</b>Correct</div>
-      <div><b id="sW" style="color:#f76a8a">0</b>Wrong</div>
-      <div><b id="sS" style="color:#f7a26a">0</b>Streak</div>
-    </div>
-
-    <div class="pb"><div id="pg"></div></div>
-
-    <div id="card">
-      <span class="meta" id="mt"></span>
-      <div id="qt"></div>
-      <div id="ow"></div>
-      <div id="fbk"></div>
-      <button id="nx" onclick="nxt()">Next →</button>
-    </div>
-
-    <div id="res">
-      <div style="font-size:3.5rem" id="re"></div>
-      <h3 style="font:700 1.6rem Georgia,serif;margin:8px 0" id="rt"></h3>
-      <p style="color:var(--mu);margin-bottom:18px" id="rs"></p>
-      <button class="fb on" onclick="go(cur)">Try again 🔁</button>
-    </div>
-  </div>
-</div>
-
-<footer>NPTEL · Management Information Systems · notes from lectures 1–60 &amp; assignments 0–12</footer>
-
+<div id="learn"><div class="q"><h2>Practice Quiz</h2><p>Pick a week, answer, get instant feedback.</p>
+<div class="fl" id="fl"></div>
+<div class="sc"><div><b id="sC" style="color:#4fd8b0">0</b>Correct</div><div><b id="sW" style="color:#f76a8a">0</b>Wrong</div><div><b id="sS" style="color:#f7a26a">0</b>Streak</div></div>
+<div class="pb"><div id="pg"></div></div>
+<div id="card"><span class="meta" id="mt"></span><div id="qt"></div><div id="ow"></div><div id="fbk"></div><button id="nx" onclick="nxt()">Next →</button></div>
+<div id="res"><div style="font-size:3.5rem" id="re"></div><h3 style="font:700 1.6rem Georgia,serif;margin:8px 0" id="rt"></h3><p style="color:var(--mu);margin-bottom:18px" id="rs"></p><button class="fb on" onclick="go(cur)">Try again 🔁</button></div>
+</div></div>
+<footer>NPTEL · Management Information Systems · notes from lectures 1–60 &amp; all questions from assignments 0–12</footer>
 <script>
 const W=[
 {n:1,t:"Introduction to MIS (L1–5)",m:"Dogs Inspire Kind Wizards → Data, Information, Knowledge, Wisdom",mp:"Input → Processing → Output, with Feedback correcting the input.",r:[["MIS goal","Transform data into useful information for decision-making"],["Data","Raw facts and figures"],["Information","Data arranged in a meaningful form"],["IS activities","Input (captures raw data), Processing (raw → meaningful), Output (used for decisions/actions), Feedback (corrects/evaluates input)"],["Technical foundation","Computers and software are the technical foundation, not the complete IS (IS = people + process + tech)"],["Trend","Mobile digital platforms transform business"]],x:"Data ≠ processed facts. Processed facts = information."},
-
 {n:2,t:"Databases, Warehouses, BI & Data Mining (L6–9)",m:"Bad Boys Fear Real Fire, Dad → Bit, Byte, Field, Record, File, Database",mp:"Smallest unit = Bit. Related files = Database.",r:[["Entity","Person, place or thing about which data is stored; its attributes are descriptors (e.g. Grade of STUDENT)"],["Redundancy","Duplicate data stored in multiple files"],["Inconsistency","Same attribute has different values"],["Primary key","Unique identification of records"],["DBMS","Interface between applications and databases; reduces inconsistency"],["BI tool","OLAP (data warehouse + analytics); data mining finds hidden patterns"]],x:"Redundancy (duplicate) causes inconsistency (conflicting values) — not the same thing."},
-
 {n:3,t:"ERP (L10–14)",m:"SAP R/3 = 3 tiers → Presentation, Application, Database",mp:"GUI sits in the Presentation layer.",r:[["SAP","Systems, Applications & Products in Data Processing"],["Architecture","Three-tier client-server"],["Benefits","Integrated supply chain, reduced order-to-cash cycle time, fewer silos/duplication, better supplier mgmt"],["BPR","ERP facilitates Business Process Reengineering"],["ERP affects","Business processes, company culture AND employee skills (all of the above)"],["Change mgmt","Biggest ERP risk is people/culture, not just technology"]],x:"ERP REDUCES order-to-cash time; it never aims to increase redundancy or manual work."},
-
 {n:4,t:"CRM, SCM, SRM, PLM (L15–19)",m:"Up = Suppliers, Down = Customers; Pull = demand-driven",mp:"Bullwhip: small demand change at retail → big swings upstream.",r:[["Supply chain","Network of resources, organizations, technologies and processes"],["Upstream","Suppliers / raw material side"],["Downstream","Delivery of product to customers"],["Internal SC","Inside the factory"],["Bullwhip effect","Demand information gets distorted along the chain; fix by improving communication and information sharing"],["Push vs Pull","Push = forecast-driven; Pull / demand-driven = driven by actual orders"]],x:"JIT: components arrive as they are needed."},
-
 {n:5,t:"Manufacturing, Materials, Quality IS (L20–24)",m:"MPS → BOM → MRP → CRP",mp:"Plan what, list parts, plan materials, check capacity.",r:[["Production order","Formally authorizes start of production"],["Independent demand","From market/customer; dependent demand is derived from it via BOM"],["BOM","Hierarchical listing of components to manufacture a product"],["MPS","Master Production Schedule: when finished products must be completed"],["CRP","Is there enough production capacity?"],["Tactical info","Product mix under limited capacity, quality control measures (strategic = location, acquisitions)"],["SPC","Statistical Process Control — quality systems"]],x:"Make-to-order = built after customer order; Make-to-stock = built to forecast."},
-
 {n:6,t:"Marketing, Sales, Finance, HR IS (L25–29)",m:"Marketing IS = Internal reports, Intelligence, Research",mp:"Marketing Intelligence = scans the external environment.",r:[["Marketing IS aim","Support marketing decisions via relevant information"],["Internal Reports","Orders, sales, inventory from inside"],["Marketing Intelligence","Continuously scans competitors and market trends"],["Segmentation data","Customer databases (demographics, purchase history, psychographics)"],["Forecasting","Time-series analysis is a quantitative method; Delphi / expert panels are qualitative"],["Accounts receivable","Tracks money owed BY customers"],["Purchase side","Vendor evaluation, vendor rating, transport & shipment arrangement"]],x:"Receivable = customers owe you; Payable = you owe suppliers."},
-
 {n:7,t:"IS Strategy, BSC & Data Centers (L30–34)",m:"BSC = F-C-P-L → Financial, Customer, Process, Learning",mp:"Manufacturing Capacity is NOT a BSC dimension.",r:[["Strategy","Function of Competition, Positioning and Capabilities"],["Business Diamond","Organizational design: People, Structure, Tasks, Information & Control"],["IS Strategy Triangle","Change one corner → evaluate the other two"],["IS infrastructure","Hardware, software, network — not advertising"],["Strategic systems analysis","Industry structure and competitive forces"],["Balanced Scorecard","Four dimensions; KPIs = Key Performance Indicators; keeps managers on strategic vision"]],x:"BSC is not financial-only."},
-
 {n:8,t:"E-Commerce (L35–39)",m:"B2C = Amazon, B2B = IndiaMART",mp:"Personalization = message; Customization = product.",r:[["E-commerce","Digitally enabled commercial transactions involving exchange of value"],["Unique features","Ubiquity, global reach, universal standards, richness, interactivity, information density, personalization/customization, social tech"],["Digital markets","Information is plentiful, cheap and accurate"],["Personalization","Adjusting marketing messages by clickstream"],["Customization","Changing a delivered product per user preference"],["Types","B2C (Amazon), B2B (IndiaMART), C2C, social and mobile commerce"]],x:"Personalization ≠ Customization."},
-
 {n:9,t:"Cloud, IoT, Big Data (L40–45)",m:"I-P-S → IaaS, PaaS, SaaS (Infra, Platform, Software)",mp:"4Vs: Volume, Velocity, Variety, Veracity.",r:[["Cloud benefits","Usage-based pricing, resource pooling, measured use — NOT increased setup time"],["SaaS","Salesforce CRM"],["PaaS","Vendor hosts runtime, libraries, tools; vendor handles infrastructure and hypervisor security"],["Private cloud","Operated solely for one organization"],["Hybrid cloud","Private + public combined (sensitive data on private, traffic spikes on public)"],["Sensors / actuators","Sensors capture environment → electrical signal; actuators change state of devices"],["Privacy by design","Consider privacy from the start and throughout"],["Variety vs Veracity","Variety = different formats/sources; Veracity = quality (missing data, spam bots)"],["Provider","DigitalOcean is a cloud provider; Data as a Platform (DaaP) is not a service model"]],x:"Don't confuse Variety (formats) with Veracity (trustworthiness)."},
-
 {n:10,t:"KMS, DSS, ESS, Expert Systems, LMS (L46–50)",m:"Simon's stages: I-D-C → Intelligence, Design, Choice",mp:"Wisdom = knowing when, where and how to apply knowledge.",r:[["Wisdom","Applying knowledge; knowing when, where, how"],["DSS","Semi-structured decisions; applies knowledge to e.g. pricing"],["ESS","Non-routine decisions needing judgment, evaluation and insight"],["Neural networks","Discover patterns in data"],["Genetic algorithms","Evaluate and optimize alternative solutions"],["Expert system","Knowledge as rules or object frames; inference engine reasons by forward chaining (facts → conclusions) or backward chaining (goal → facts)"],["MOODLE","Modular Object-Oriented Dynamic Learning Environment"]],x:"Forward = from facts to conclusion; Backward = from goal."},
-
 {n:11,t:"Ethics, Privacy & Security (L51–55)",m:"IT BCPs: IT = DRP, Management = BCP",mp:"Disaster Recovery = IT restores; Business Continuity = business keeps running.",r:[["Privacy","Right to be left alone; must be balanced against society's needs"],["Cookies","Small text files placed on your hard drive to identify and track visits"],["Panopticon effect","Unknown surveillance makes people self-regulate"],["Man-in-the-middle","Secretly intercepts, reads, may alter communication"],["Phishing","Deceptive emails/messages to steal identity"],["VPN","Virtual Private Network"],["DRP vs BCP","IT restoring servers = DRP; management manual workaround = BCP"],["GLBA","Financial institutions must secure and keep confidential customers' non-public personal information"]],x:"Phishing = email lure; Pharming = redirection via DNS."},
-
-{n:12,t:"Global Organizations & Shared Services (L56–60)",m:"Shared Services = Same service, Single hub, Saves cost",mp:"Centralize repeatable functions in low-cost locations.",r:[["Shared services","Share delivery of similar services across locations/countries to reduce cost, enhance efficiency, improve quality (L58)"],["Example","Central purchasing for many country units; hubs in Poland/Romania (multilingual, lower salaries) or India/China"],["Requires","A strong IT / information-system backbone"],["Other topics","Global strategies, offshoring / transitioning global IT systems, globalization in a flat world"]],x:"Shared services runs on IS platforms; it is not just a business function."}
-];
-
-const Q=[
-[1,"What is the primary goal of MIS?",["Increase hardware sales","Generate raw data","Transform data into useful information for decision-making","Replace managers"],2,"MIS turns data into information for decisions."],
-[1,"Correct hierarchy?",["Wisdom–Knowledge–Information–Data","Data–Information–Knowledge–Wisdom","Information–Data–Wisdom–Knowledge","Knowledge–Data–Information–Wisdom"],1,"DIKW."],
-[1,"Data can best be described as:",["Processed facts","Meaningful insights","Raw facts and figures","Strategic decisions"],2,"Data is raw; processed data is information."],
-[1,"Information is:",["Unprocessed data","Data arranged in a meaningful form","A collection of hardware","Organizational culture"],1,"Meaningful form of data."],
-[1,"Which activity captures raw data?",["Processing","Feedback","Input","Output"],2,"Input captures raw data."],
-[1,"Which activity converts raw data into information?",["Feedback","Processing","Input","Distribution"],1,"Processing."],
-[1,"Feedback is used to:",["Increase storage","Correct or evaluate inputs","Replace processing","Eliminate outputs"],1,"Feedback corrects/evaluates input."],
-[1,"Computers and software are:",["Complete information systems","Organizational assets","Technical foundations of information systems","Decision makers"],2,"Foundation only; IS also needs people and processes."],
-[1,"Technology trend transforming business:",["Typewriters","Mobile digital platforms","Telegraph","Mechanical calculators"],1,"Mobile digital platforms."],
-
-[2,"Smallest unit of data a computer handles:",["Byte","Field","Bit","Record"],2,"Bit."],
-[2,"A collection of related files is a:",["Record","Field","Database","Byte"],2,"Database."],
-[2,"An entity is:",["A software package","A person, place or thing about which data is stored","A collection of records","A query"],1,"Entity definition."],
-[2,"Attribute of a STUDENT entity:",["Database","Grade","Folder","File"],1,"Grade describes the student."],
-[2,"Data redundancy refers to:",["Missing data","Duplicate data stored in multiple files","Incorrect entry","Unauthorized access"],1,"Duplicate data."],
-[2,"Data inconsistency occurs when:",["Data is encrypted","Stored in a warehouse","Same attribute has different values","Data is normalized"],2,"Conflicting values."],
-[2,"A primary key is used for:",["Backup","Compression","Unique identification of records","Data mining"],2,"Uniqueness."],
-[2,"A DBMS acts as:",["Spreadsheet tool","Interface between applications and databases","Programming language","Web browser"],1,"Interface."],
-[2,"Major BI tool:",["OLAP","Compiler","Antivirus","Browser"],0,"OLAP."],
-
-[3,"SAP stands for:",["Systems Applications & Products in Data Processing","Standard Applications Processing","Systems and Products Platform","Software Applications Processing"],0,"SAP."],
-[3,"SAP R/3 follows:",["Two-tier","Four-tier","Three-tier","Single-tier"],2,"Presentation, Application, Database."],
-[3,"In SAP R/3, GUI components belong to:",["Database layer","Application layer","Presentation layer","Middleware"],2,"Presentation layer."],
-[3,"Key benefit expected from ERP:",["Increased inventory","Integrated supply chain management","More manual effort","More isolated systems"],1,"Integration."],
-[3,"ERP helps reduce:",["Order-to-cash cycle time","Data availability","Productivity","Automation"],0,"Shorter order-to-cash."],
-[3,"ERP facilitates:",["Business Process Reengineering","Data duplication","Information silos","Stand-alone processing"],0,"BPR."],
-[3,"ERP affects:",["Business processes","Company culture","Employee skills","All of the above"],3,"All three."],
-
-[4,"Bullwhip effect means:",["Inventory is eliminated","Demand information gets distorted along the supply chain","Production exceeds quality","Warehouses are automated"],1,"Demand distortion upstream."],
-[4,"A method of reducing bullwhip effect:",["Increase batch sizes","Improve communication across the supply chain","Reduce information sharing","Increase shortages"],1,"Share information."],
-[4,"Demand-driven supply chains use a:",["Push system","Pull system","Manual system","Forecast-only system"],1,"Pull."],
-[4,"Downstream supply chain focuses on:",["Raw material suppliers","Internal warehouses","Product delivery to customers","Employee management"],2,"Customers."],
-[4,"Internal supply chain activities occur:",["Between countries","Inside the factory","Only with customers","Only with suppliers"],1,"Inside the organization."],
-[4,"Supply chain is best described as:",["Single manufacturing unit","Distribution warehouse","Network of resources, organizations, technologies and processes","Marketing department"],2,"A network."],
-[4,"JIT: components arrive:",["Months before production","After delivery","As they are needed","Yearly"],2,"As needed."],
-
-[5,"Which document authorizes the start of production?",["Goods receipt note","Production order","Sales quotation","Purchase requisition"],1,"Production order."],
-[5,"Optimal product mix under limited capacity is:",["Strategic","Tactical","Operational","Transaction processing"],1,"Tactical."],
-[5,"Independent vs dependent demand:",["Independent derived from BOM","Dependent from customers","Independent from market; dependent derived from it","Both from suppliers"],2,"Dependent demand is derived."],
-[5,"A BOM is:",["Financial statement","Hierarchical listing of components for a product","Quality report","Vendor evaluation"],1,"BOM."],
-[5,"MRP input that specifies when finished products must be done:",["Inventory records","Capacity plan","Master Production Schedule","Routing sheet"],2,"MPS."],
-[5,"CRP is concerned with:",["Forecasting demand","Whether sufficient capacity exists","Designing products","Customer satisfaction"],1,"Capacity."],
-
-[6,"Subsystem scanning competitors and market trends:",["Internal Reports","Marketing Intelligence","Pricing","Sales Forecasting"],1,"Intelligence."],
-[6,"Purpose of marketing information systems:",["Automate payroll","Support marketing decisions through relevant information","Manage production schedules","Monitor attendance"],1,"Decision support."],
-[6,"Segmentation data mostly comes from:",["Customer databases","Payroll records","SPC systems","Capacity planning"],0,"Customer databases."],
-[6,"Accounts receivable tracks:",["Supplier payments","Money owed by customers","Payroll","Inventory"],1,"Receivable = from customers."],
-
-[7,"Business strategy is a function of:",["Competition, Positioning, Capabilities","Hardware, Software, Data","Revenue, Cost, Profit","Customers, Vendors, Employees"],0,"Strategy."],
-[7,"Model for organizational design:",["SWOT","Business Diamond","BCG Matrix","Ansoff Matrix"],1,"Business Diamond."],
-[7,"NOT an IS infrastructure component:",["Hardware","Software","Network","Advertising"],3,"Advertising."],
-[7,"Changing one corner of the IS Strategy Triangle requires:",["No action","Evaluating the other two corners","Hiring more staff","Increasing profits"],1,"Triangle must stay aligned."],
-[7,"NOT a BSC dimension:",["Customer","Financial","Business Process","Manufacturing Capacity"],3,"Learning & Growth is the 4th."],
-[7,"KPIs stands for:",["Key Performance Indicators","Knowledge Processing Instructions","Key Product Integrators","Knowledge Performance Interfaces"],0,"KPI."],
-
-[8,"E-commerce is:",["Physical transactions only","Digitally enabled commercial transactions involving exchange of value","Internal communication","Manufacturing automation"],1,"Definition."],
-[8,"In digital markets, information is:",["Limited and costly","Plentiful, cheap and accurate","Only for firms","Difficult to access"],1,"Lower information asymmetry."],
-[8,"Adjusting marketing messages by clickstream is:",["Customization","Segmentation","Personalization","Automation"],2,"Personalization."],
-[8,"Changing a delivered product per user preference:",["Personalization","Customization","Standardization","Diversification"],1,"Customization."],
-[8,"Amazon is:",["B2B","C2C","B2C","G2C"],2,"B2C."],
-[8,"IndiaMART is mainly:",["B2B","C2C","Social commerce","Mobile commerce"],0,"B2B."],
-
-[9,"NOT a benefit of cloud computing:",["Usage-based pricing","Resource pooling","Increased set-up time","Measured use"],2,"Cloud reduces setup time."],
-[9,"Salesforce CRM is:",["IaaS","PaaS","SaaS","DaaS"],2,"SaaS."],
-[9,"Dedicated servers for sensitive data plus shared network for traffic spikes:",["Public","Community","Private","Hybrid"],3,"Hybrid."],
-[9,"Tools that change state of devices are:",["Sensors","IoT","Actuators","Proximity sensor"],2,"Actuators."],
-[9,"Primary role of a sensor:",["Convert electrical signal to action","Capture environmental data as an electrical signal","Store data in cloud","Power the device"],1,"Sensing."],
-[9,"Privacy by design means:",["Optional add-on near the end","Considering privacy from the start and throughout","Patching after breaches","User picks every setting"],1,"Proactive."],
-[9,"Which is a cloud service provider?",["Netflix","JioHotstar","Reliance Digital","DigitalOcean"],3,"DigitalOcean."],
-[9,"Not a cloud service model:",["IaaS","PaaS","SaaS","Data as a Platform (DaaP)"],3,"DaaP."],
-
-[10,"Knowing when, where and how to apply knowledge:",["Cognition","Wisdom","Tacit","Culture"],1,"Wisdom."],
-[10,"System used to apply knowledge to decide new product pricing:",["TPS","Office Automation","SCM","DSS"],3,"DSS."],
-[10,"Neural networks vs genetic algorithms:",["NN optimize, GA find patterns","NN find patterns; GA evaluate/optimize alternatives","NN use evolution","Identical"],1,"Roles."],
-[10,"Executive Support Systems address:",["Routine structured decisions","Non-routine decisions needing judgment and insight","Day-to-day tactical decisions","Transaction processing"],1,"ESS."],
-[10,"NOT a stage of Simon's decision-making:",["Intelligence","Design","Choice","Scope"],3,"I-D-C."],
-[10,"Inference engine moving from symptoms to diagnoses uses:",["Backward chaining","Goal-driven analysis","Breadth-first reasoning","Forward chaining"],3,"Facts to conclusions."],
-[10,"MOODLE stands for:",["Modern Object-Oriented Dynamic Learning Environment","Modular Object-Oriented Dynamic Learning Environment","Managed Open Online Distance Learning Experience","Modular Open Online Digital Learning Engine"],1,"Modular Object-Oriented..."],
-
-[11,"Right to privacy:",["Absolute, over society","Must be balanced against society's needs","Always below public right to know","Doesn't exist"],1,"Balanced."],
-[11,"Cookies are:",["Small text files on your drive to identify/track visits","Hidden history deleters","Password stealers","Temporary cables"],0,"Tracking files."],
-[11,"Employees comply due to possible hidden monitoring:",["Hawthorne Effect","Panopticon Effect","Groupthink","Cognitive Dissonance"],1,"Panopticon."],
-[11,"Man-in-the-middle attack:",["Overloads servers","Secretly intercepts and may alter communications","Installs disguised malware","Brute-forces passwords"],1,"Interception."],
-[11,"VPN stands for:",["Visual Private Network","Virtual Private Node","Virtual Private Network","Visual Private Node"],2,"VPN."],
-[11,"IT restores servers; management uses manual process:",["Both DRP","Both BCP","IT = BCP, Mgmt = DRP","IT = DRP, Mgmt = BCP"],3,"DRP = IT; BCP = business."],
-[11,"GLBA requires financial institutions to:",["Publish balances","Secure and keep confidential non-public personal info","Share data with third parties","Destroy records after a year"],1,"Security + confidentiality."],
-
-[12,"Shared services aim to:",["Increase duplication","Share delivery of similar services across locations to cut cost and improve quality","Eliminate IT","Outsource only manufacturing"],1,"Lecture 58."],
-[12,"Why host shared services in Poland/Romania?",["No languages","Multilingual staff and lower salaries","No taxes","Only for retail"],1,"Multi-language skills, lower cost."],
-[12,"Shared services depend heavily on:",["Informal processes","A good IT/information-system backbone","Paper records","Local autonomy only"],1,"IS platform."]
-];
-
-document.getElementById('nq').textContent = Q.length;
-
-document.getElementById('nav').innerHTML =
-  W.map(w => `<a href="#w${w.n}">Wk ${w.n}</a>`).join('') +
-  '<a href="#learn" style="color:#4fd8b0">⚡ Quiz</a>';
-
-document.getElementById('notes').innerHTML = W.map(w => `
-<section class="wk" id="w${w.n}">
-  <div class="wh">
-    <span class="wn">Week ${String(w.n).padStart(2,'0')}</span>
-    <span class="wt">${w.t}</span>
-  </div>
-  <div class="mn">
-    <i>🧠 Mnemonic</i>
-    <strong>${w.m}</strong>
-    <p>${w.mp}</p>
-  </div>
-  <table>
-    <thead><tr><th>Topic</th><th>Key point</th></tr></thead>
-    <tbody>${w.r.map(r =>
-      `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`
-    ).join('')}</tbody>
-  </table>
-  <div class="tr"><i>⚡ Exam trap</i>${w.x}</div>
-</section>`).join('');
-
-let pool = [], i = 0, c = 0, wr = 0, s = 0, cur = 'all';
-
-const fl = document.getElementById('fl');
-
-fl.innerHTML = ['all', ...W.map(w => w.n)].map(k =>
-  `<button class="fb${k == 'all' ? ' on' : ''}" onclick="go('${k}',this)">${
-    k == 'all' ? 'All' : 'Week ' + k
-  }</button>`
-).join('');
-
-function sh(a) {
-  a = [...a];
-  for (let k = a.length - 1; k > 0; k--) {
-    const j = Math.floor(Math.random() * (k + 1));
-    [a[k], a[j]] = [a[j], a[k]];
-  }
-  return a;
-}
-
-/* =========================================
-   SOUND EFFECTS
-   ========================================= */
-
-let soundUnlocked = false;
-
-/*
-  Browsers may block audio until the user interacts
-  with the page. This function prepares the sounds
-  after the first interaction.
-*/
-function unlockSounds() {
-  if (soundUnlocked) return;
-
-  const correctSound = document.getElementById('correctSound');
-  const wrongSound = document.getElementById('wrongSound');
-
-  [correctSound, wrongSound].forEach(sound => {
-    sound.load();
-  });
-
-  soundUnlocked = true;
-}
-
-/*
-  Play the selected sound and stop the other sound
-  so that the two effects never overlap.
-*/
-function playSound(type) {
-  const correctSound = document.getElementById('correctSound');
-  const wrongSound = document.getElementById('wrongSound');
-
-  const sound = type === 'correct' ? correctSound : wrongSound;
-  const otherSound = type === 'correct' ? wrongSound : correctSound;
-
-  otherSound.pause();
-  otherSound.currentTime = 0;
-
-  sound.pause();
-  sound.currentTime = 0;
-
-  const playback = sound.play();
-
-  if (playback !== undefined) {
-    playback.catch(error => {
-      console.warn(
-        'Quiz sound could not be played. Check the MP3 file path.',
-        error
-      );
-    });
+{n:12,t:"Global Organizations & Shared Services (L56–60)",m:"Shared Services = Same service, Single hub, Saves cost",mp:"Centralize repeatable functions in low-cost locations.",r:[["Shared services","Share delivery of similar services across locations/countries to reduce cost, enhance efficiency, improve quality (L58)"],["Example","Central purchasing for many country units; hubs in Poland/Romania (multilingual, lower salaries) or India/China"],["Requires","A strong IT / information-system backbone"],["Other topics","Global strategies, offshoring / transitioning global IT systems, globalization in a flat world"]],x:"Shared services runs on IS platforms; it is not just a business function."}];
+const T="True",F="False";
+const Q=[[0, "What is the primary goal of MIS?", ["Increase hardware sales", "Generate raw data", "Transform data into useful information for decision-making", "Replace managers"], 2, "Answer: Transform data into useful information for decision-making"], [0, "A collection of related files is known as:", ["Record", "Field", "Byte", "Database"], 3, "Answer: Database"], [0, "ERP helps reduce:", ["Order-to-cash cycle time", "Data availability", "Productivity", "Automation"], 0, "Answer: Order-to-cash cycle time"], [0, "In a Just-in-Time (JIT) strategy, components arrive:", ["Months before production", "After product delivery", "As they are needed", "At fixed yearly intervals"], 2, "Answer: As they are needed"], [0, "Which are the 4Vs of big data?", ["Velocity, Variety, Voice, and Volume", "Video, Velocity, Variety, and Volume", "Velocity, Volume, Variety, and Veracity", "Voice, Video, Velocity, and Volume"], 2, "Answer: Velocity, Volume, Variety, and Veracity"], [0, "In a manufacturing information system, which document formally authorizes the start of production?", ["Goods receipt note", "Production order", "Sales quotation", "Purchase requisition"], 1, "Answer: Production order"], [0, "Which of the following is a type of Knowledge Management Systems?", ["Knowledge work systems", "Intelligent techniques", "Enterprise-wide knowledge management systems", "All of these"], 3, "Answer: All of these"], [0, "Which of the following is not a cloud service model?", ["Infrastructure as a Service (laaS)", "Platform as a Service (PaaS)", "Software as a Service (SaaS)", "Data as a Platform (DaaP)"], 3, "Answer: Data as a Platform (DaaP)"], [0, "What best describes a private cloud?", ["cloud service available to the general public over the internet", "cloud infrastructure operated solely for a single organization", "cloud model combining public and private resources", "free cloud storage service provided by third-party vendors"], 1, "Answer: cloud infrastructure operated solely for a single organization"], [0, "Changing a delivered product based on user preferences is known as:", ["Personalization", "Customization", "Standardization", "Diversification"], 1, "Answer: Customization"], [1, "What is the primary goal of MIS?", ["Increase hardware sales", "Generate raw data", "Transform data into useful information for decision-making", "Replace managers"], 2, "Answer: Transform data into useful information for decision-making"], [1, "Which of the following represents the correct hierarchy?", ["Wisdom — Knowledge — Information — Data", "Data — Information + Knowledge — Wisdom", "Information — Data + Wisdom — Knowledge", "Knowledge — Data — Information — Wisdom"], 1, "Answer: Data — Information + Knowledge — Wisdom"], [1, "Data can best be described as:", ["Processed facts", "Meaningful insights", "Raw facts and figures", "Strategic decisions"], 2, "Answer: Raw facts and figures"], [1, "Information is:", ["Unprocessed data", "Data arranged in a meaningful form", "Acollection of hardware devices", "Organizational culture"], 1, "Answer: Data arranged in a meaningful form"], [1, "Which activity captures raw data in an information system?", ["Processing", "Feedback", "Input", "Output"], 2, "Answer: Input"], [1, "Which activity converts raw data into meaningful information?", ["Feedback", "Processing", "Input", "Distribution"], 1, "Answer: Processing"], [1, "The output of an information system is primarily used for:", ["Data collection", "Data storage", "Decision-making and actions", "Hardware maintenance"], 2, "Answer: Decision-making and actions"], [1, "Feedback in an information system is used to:", ["Increase storage capacity", "Correct or evaluate inputs", "Replace processing", "Eliminate outputs"], 1, "Answer: Correct or evaluate inputs"], [1, "Computers and software are considered:", ["Complete information systems", "Organizational assets", "Technical foundations of information systems", "Decision makers"], 2, "Answer: Technical foundations of information systems"], [1, "Which technology trend is highlighted as transforming business?", ["Typewriters", "Mobile digital platforms", "Telegraph systems", "Mechanical calculators"], 1, "Answer: Mobile digital platforms"], [2, "What is the smallest unit of data a computer can handle?", ["Byte", "Field", "Bit", "Record"], 2, "Answer: Bit"], [2, "A collection of related files is known as:", ["Record", "Field", "Database", "Byte"], 2, "Answer: Database"], [2, "Data redundancy refers to:", ["Missing data", "Duplicate data stored in multiple files", "Incorrect data entry", "Unauthorized access"], 1, "Answer: Duplicate data stored in multiple files"], [2, "Data inconsistency occurs when:", ["Data is encrypted", "Data is stored in a warehouse", "Same attribute has different values", "Data is normalized"], 2, "Answer: Same attribute has different values"], [2, "One major advantage of DBMS is:", ["Increased redundancy", "Reduces inconsistency", "Reduced storage capacity", "Decentralized security"], 1, "Answer: Reduces inconsistency"], [2, "Which is a major BI tool?", ["OLAP", "Compiler", "Antivirus", "Browser"], 0, "Answer: OLAP"], [2, "An entity can be best described as:", ["A software package", "A person, place, or thing about which data is stored", "A collection of records", "A database query"], 1, "Answer: A person, place, or thing about which data is stored"], [2, "Which of the following is an attribute of a STUDENT entity?", ["Database", "Grade", "Folder", "File"], 1, "Answer: Grade"], [2, "A primary key is used for:", ["Data backup", "Data compression", "Unique identification of records", "Data mining"], 2, "Answer: Unique identification of records"], [2, "A DBMS acts as:", ["A spreadsheet tool", "An interface between applications and databases", "A programming language", "A web browser"], 1, "Answer: An interface between applications and databases"], [3, "SAP stands for:", ["Systems Applications & Products in Data Processing", "Standard Applications Processing", "Systems and Products Platform", "Software Applications Processing"], 0, "Answer: Systems Applications & Products in Data Processing"], [3, "SAP R/3 follows:", ["Two-tier architecture", "Four-tier architecture", "Three-tier architecture", "Single-tier architecture"], 2, "Answer: Three-tier architecture"], [3, "In SAP R/3, GUI components belong to:", ["Database layer", "Application layer", "Presentation layer", "Middleware layer"], 2, "Answer: Presentation layer"], [3, "A key business benefit expected from ERP is:", ["Increased inventory levels", "Integrated supply chain management", "Increased manual effort", "More isolated systems"], 1, "Answer: Integrated supply chain management"], [3, "ERP helps reduce:", ["Order-to-cash cycle time", "Data availability", "Productivity", "Automation"], 0, "Answer: Order-to-cash cycle time"], [3, ") ERP facilitates:", ["Business Process Reengineering (BPR)", "Data duplication", "Information silos", "Stand-alone processing"], 0, "Answer: Business Process Reengineering (BPR)"], [3, ") ERP affects:", ["Business processes", "Company culture", "Employee skills", "All of the above"], 3, "Answer: All of the above"], [3, ") ERP can reduce costs through:", ["Better supplier management", "Increased redundancy", "More manual work", "Separate purchasing systems"], 0, "Answer: Better supplier management"], [3, ") A common reason for ERP project risk is:", ["Strong top management support", "Inexperienced core team", "Stable requirements", "High computer literacy"], 1, "Answer: Inexperienced core team"], [3, "A limitation of traditional MRP was:", ["Lack of planning capability", "Ignoring available capacity during planning", "Too much HR integration", "Real-time collaboration"], 1, "Answer: Ignoring available capacity during planning"], [4, "SCM involves which two major flows?", ["Product and profit flow", "Material flow and information flow", "Cash flow and tax flow", "Labor flow and energy flow"], 1, "Answer: Material flow and information flow"], [4, ") A supply chain is best described as a:", ["Single manufacturing unit", "Distribution warehouse", "Network of resources, organizations, technologies, and processes", "Marketing department"], 2, "Answer: Network of resources, organizations, technologies, and processes"], [4, "One method of reducing the bullwhip effect is to:", ["Increase batch sizes", "Improve communication across the supply chain", "Reduce information sharing", "Increase shortages"], 1, "Answer: Improve communication across the supply chain"], [4, "Demand-driven supply chains use a:", ["Push system", "Pull system", "Manual system", "Forecast-only system"], 1, "Answer: Pull system"], [4, "In a Just-in-Time (JIT) strategy. components arrive:", ["Months before production", "After product delivery", "As they are needed", "At fixed yearly intervals"], 2, "Answer: As they are needed"], [4, "Which supply chain consists of suppliers and suppliers’ suppliers?", ["Internal supply chain", "Downstream supply chain", "Upstream supply chain", "Retail supply chain"], 2, "Answer: Upstream supply chain"], [4, "The downstream supply chain focuses on:", ["Raw material suppliers", "Internal warehouses", "Product delivery to customers", "Employee management"], 2, "Answer: Product delivery to customers"], [4, "Internal supply chain activities occur:", ["Between countries", "Inside the factory", "Only with customers", "Only with suppliers"], 1, "Answer: Inside the factory"], [4, "The bullwhip effect occurs when:", ["Inventory is eliminated", "Demand information gets distorted along the supply chain", "Production exceeds quality standards", "Warehouses are automated"], 1, "Answer: Demand information gets distorted along the supply chain"], [4, "A push-based model is also known as:", ["Build-to-order", "Build-to-stock", "Demand-driven", "Pull-based"], 1, "Answer: Build-to-stock"], [5, "A company manufactures customized industrial machinery only after receiving customer orders. This production strategy is best classified as:", ["Make-to-stock", "Continuous production", "Make-to-order", "Batch processing"], 2, "Answer: Make-to-order"], [5, "In a manufacturing information system, which document formally authorizes the start of production?", ["Goods receipt note", "Production order", "Sales quotation", "Purchase requisition"], 1, "Answer: Production order"], [5, "Which of the following would be considered a tactical information requirement for manufacturing management?", ["Long-term product design decisions", "Factory location planning", "Quality control measures", "Corporate acquisition strategy"], 2, "Answer: Quality control measures"], [5, "A production manager wants to identify the optimal product mix under limited machine * capacity. This decision falls under:", ["Strategic information", "Tactical information", "Operational information", "Transaction processing"], 1, "Answer: Tactical information"], [5, "5 Which statement best explains the difference between independent and dependent demand?", ["Independent demand is derived from BOM requirements.", "Dependent demand originates directly from customer demand.", "Independent demand is determined by market demand, while dependent demand is derived from it.", "Both are determined by suppliers."], 2, "Answer: Independent demand is determined by market demand, while dependent demand is derived from it."], [5, "primarily serves as:", ["A financial statement", "A hierarchical listing of components needed to manufacture a product", "A quality inspection report", "A vendor evaluation document"], 1, "Answer: A hierarchical listing of components needed to manufacture a product"], [5, "Which MRP input specifies when finished products must be completed?", ["Inventory records", "Capacity plan", "Master Production Schedule", "Routing sheet"], 2, "Answer: Master Production Schedule"], [5, "is mainly concerned with:", ["Forecasting demand", "Determining whether sufficient production capacity exists", "Designing new products", "Monitoring customer satisfaction"], 1, "Answer: Determining whether sufficient production capacity exists"], [5, "Which technology allows engineers to visualize and test products before physical prototypes are built?", ["ERP", "SPC", "CAD", "CRM"], 2, "Answer: CAD"], [5, "A major advantage of additive manufacturing over traditional manufacturing is:", ["Elimination of all design costs", "Rapid prototyping with minimal tooling", "Reduced need for digital designs", "Lower computing requirements"], 1, "Answer: Rapid prototyping with minimal tooling"], [6, "The primary objective of a Marketing Information System (MKIS) is to:", ["Automate payroll processing", "Support marketing decision-making through relevant information", "Manage production schedules", "Monitor employee attendance"], 1, "Answer: Support marketing decision-making through relevant information"], [6, "In the marketing research process, data collection should occur:", ["Before defining the problem", "After implementing recommendations", "After defining objectives and research questions", "Before identifying information needs"], 2, "Answer: After defining objectives and research questions"], [6, "Which forecasting method relies most heavily on historical sales patterns?", ["Delphi technique", "Scenario planning", "Time-series analysis", "Expert panels"], 2, "Answer: Time-series analysis"], [6, "The greatest advantage of Sales Force Automation is:", ["Eliminating customer interactions", "Instant access to organizational information during selling activities", "Replacing marketing research", "Reducing product quality costs"], 1, "Answer: Instant access to organizational information during selling activities"], [6, "Before a sales order is confirmed, organizations commonly perform:", ["Employee screening", "Credit verification", "Vendor rating", "Capacity auditing"], 1, "Answer: Credit verification"], [6, "Which activity immediately follows picking and packing in the sales distribution process?", ["Recruitment", "Payroll approval", "Transportation and shipment arrangement", "Vendor evaluation"], 2, "Answer: Transportation and shipment arrangement"], [6, "Which subsystem continuously scans the external environment for information on competitors and market trends?", ["Internal Reports Subsystem", "Marketing Intelligence Subsystem", "Pricing Subsystem", "Sales Forecasting Subsystem"], 1, "Answer: Marketing Intelligence Subsystem"], [6, "A company uses customer demographics, purchasing history and psychographic data to identify target segments. This information comes primarily from:", ["Customer databases", "Payroll records", "SPC systems", "Capacity planning systems"], 0, "Answer: Customer databases"], [6, "The primary purpose of Accounts Receivable is to:", ["Manage supplier payments", "Track money owed by customers", "Maintain payroll records", "Monitor inventory"], 1, "Answer: Track money owed by customers"], [6, "A customer returns damaged goods after invoicing. Which accounting document is most likely generated?", ["Debit note", "Purchase requisition", "Inspection certificate", "Credit note"], 3, "Answer: Credit note"], [7, "Business strategy is a function of:", ["Competition, Positioning, and Capabilities", "Hardware, Software, and Data", "Revenue, Cost, and Profit", "Customers, Vendors, and Employees"], 0, "Answer: Competition, Positioning, and Capabilities"], [7, "Which model is used for organizational design?", ["SWOT Matrix", "Business Diamond", "BCG Matrix", "Ansoff Matrix"], 1, "Answer: Business Diamond"], [7, "The Business Diamond consists of:", ["Finance, Marketing, HR, Operations", "Hardware, Software, Network, Data", "People, Structure, Tasks, Information Control", "Cost, Quality, Time, Flexibility"], 2, "Answer: People, Structure, Tasks, Information Control"], [7, "Strategic Systems Analysis examines:", ["Industry structure and competitive forces", "Employee attendance only", "Payroll systems only", "Accounting records only"], 0, "Answer: Industry structure and competitive forces"], [7, "Balanced Scorecard (BSC) focuses on:", ["Only financial performance", "Four dimensions of performance", "Employee salaries", "Product prices only"], 1, "Answer: Four dimensions of performance"], [7, "Which is NOT one of the four BSC dimensions?", ["Customer", "Financial", "Business Process", "Manufacturing Capacity"], 3, "Answer: Manufacturing Capacity"], [7, "KPIs in a BSC are:", ["Key Performance Indicators", "Knowledge Processing Instructions", "Key Product Integrators", "Knowledge Performance Interfaces"], 0, "Answer: Key Performance Indicators"], [7, "BSC helps managers focus on:", ["Strategic vision", "Office administration only", "Accounting entries only", "Legal compliance only"], 0, "Answer: Strategic vision"], [7, "Which is NOT an IS infrastructure component?", ["Hardware", "Software", "Network", "Advertising"], 3, "Answer: Advertising"], [7, "Changing one corner of the IS Strategy Triangle requires:", ["No action", "Evaluating the other two corners", "Hiring more staff", "Increasing profits"], 1, "Answer: Evaluating the other two corners"], [8, "E-commerce refers to:", ["Physical transactions only", "Digitally enabled commercial transactions involving exchange of value", "Internal organizational communication", "Manufacturing automation"], 1, "Answer: Digitally enabled commercial transactions involving exchange of value"], [8, "Which feature of e-commerce allows access to markets anytime and anywhere?", ["Richness", "Interactivity", "Ubiquity", "Customization"], 2, "Answer: Ubiquity"], [8, "The ability of e-commerce to reach across national boundaries is known as:", ["Information density", "Global reach", "Personalization", "Interactivity"], 1, "Answer: Global reach"], [8, "Information density in e-commerce means information is:", ["Limited and costly", "Plentiful, cheap, and accurate", "Only available to firms", "Difficult to access"], 1, "Answer: Plentiful, cheap, and accurate"], [8, "Adjusting marketing messages based on a customer's clickstream behavior is called:", ["Customization", "Segmentation", "Personalization", "Automation"], 2, "Answer: Personalization"], [8, "Changing a delivered product based on user preferences is known as:", ["Personalization", "Customization", "Standardization", "Diversification"], 1, "Answer: Customization"], [8, "Amazon is an example of which type of e-commerce?", ["B2B", "C2C", "B2C", "G2C"], 2, "Answer: B2C"], [8, "IndiaMART is primarily an example of:", ["B2B e-commerce", "C2C e-commerce", "Social commerce", "Mobile commerce"], 0, "Answer: B2B e-commerce"], [8, "Which of the following is a major challenge in e-commerce?", ["Global reach", "Personalization", "Trust issues", "Richness"], 2, "Answer: Trust issues"], [8, "Which key element of a business model answers “How to earn money?”", ["Market strategy", "Competitive advantage", "Revenue model", "Market opportunity"], 2, "Answer: Revenue model"], [9, "FinTech Solutions Inc. is developing a new customer-facing analytics portal. To accelerate their release timeline. they decide to use a cloud-based environment where the vendor hosts the runtime. libraries. testing tools. and plugins. To securely expose this platform's API to their internal network. they implement cloud-native security groups. web application firewalls, and encrypted virtual private cloud (VPC) peering. Which cloud service model is FinTech Solutions utilizing for this analytics portal, and who is fundamentally responsible for ensuring the availability. bandwidth, and security at the hypervisor layer?", ["PaaS: The Cloud Vendor is responsible for the underlying infrastructure capacity. virtual networking. and hypervisor security.", "PaaS: The Client manages the physical hardware. while the Cloud Vendor manages capacity.", "SaaS: The Cloud Vendor manages only the application logic. while the Client manages all security and networking.", "SaaS: The Cloud Vendor and Client share the hypervisor layer responsibility."], 0, "Answer: PaaS: The Cloud Vendor is responsible for the underlying infrastructure capacity. virtual networking. and hypervisor security."], [9, "GlobalHealth Inc. uses its own dedicated, single-tenant servers to securely store highly sensitive patient data. To handle unpredictable spikes in public appointment bookings. the company temporarily offloads web traffic to a globally shared network. What cloud deployment model does GlobalHealth Inc. utilize?", ["Public cloud", "Community cloud", "Private cloud", "Hybrid cloud"], 3, "Answer: Hybrid cloud"], [9, "Tools or mechanisms that can change their own state and/or the state of other devices and machines are called", ["Sensors", "IoT", "Actuators", "Proximity Sensor"], 2, "Answer: Actuators"], [9, "Which of the following statements accurately describes an Outsourced Private Cloud?", ["Itis implemented solely within the customer's own premises.", "The server side is managed by a hosting company.", "Itis designed and shared to serve the general public.", "The infrastructure is always owned and operated by the customer's internal IT team."], 1, "Answer: The server side is managed by a hosting company."], [9, "A retail e-commerce giant aggregates data streams for a Black Friday churn campaign: (A) wearable biometric/sensor binary files, (B) text reviews and emojis from social media, (C) structured SQL/JSON transaction logs. 15% of the smartwatch streams have missing timestamps and 20% of social data comes from spam bots. Which option correctly diagnoses Variety and Veracity?", ["The integration of wearable devices. social media, and transactional logs represents a Variety challenge. while timestamp gaps and spam bots represent a Veracity challenge.", "The data format differences between binary files. text. and JSON represent a Veracity challenge. while missing timestamps in the wearable data represent a Variety challenge", "The integration of different platforms (sensors, social media, SQL) represents a Veracity challenge, while the presence of bot spam and missing intervals both strictly represent Variety issues", "Both the format differences (Stream A. B. C) and the missing intervals are examples of Variety, whereas the presence of bot spam is an example of Veracity."], 0, "Answer: The integration of wearable devices. social media, and transactional logs represents a Variety challenge. while timestamp gaps and spam bots represent a Veracity challenge."], [9, "Which among the following is a cloud service provider?", ["Netflix", "JioHotstar", "Reliance Digital", "DigitalOcean"], 3, "Answer: DigitalOcean"], [9, "Which of the following is NOT a benefit of cloud computing?", ["Usage-based pricing", "Resource pooling", "Increased set-up time", "Measured use"], 2, "Answer: Increased set-up time"], [9, "Salesforce.com’s CRM software is an example of which cloud service model?", ["IaaS", "PaaS", "SaaS", "DaaS"], 2, "Answer: SaaS"], [9, "Privacy by design means:", ["Applying privacy settings as an optional add-on near the end of development", "Proactively considering privacy objectives from the start and throughout design and delivery", "Reacting to breaches with immediate patches", "Letting users manually select every privacy feature"], 1, "Answer: Proactively considering privacy objectives from the start and throughout design and delivery"], [9, "What is the primary function of a sensor in IoT?", ["To convert an electrical signal into a physical action", "To capture environmental data and convert it into an electrical signal", "To store massive data in the cloud", "To power the IoT device"], 1, "Answer: To capture environmental data and convert it into an electrical signal"], [10, "is the collective and individual experience of applying knowledge to the solution of problem: knowing when, where, and how to apply that knowledge.", ["Cognition", "Wisdom", "Tacit", "Culture"], 1, "Answer: Wisdom"], [10, "A retail manager uses an IT system that instantly pulls historical sales data and expert staff insights to determine the best price for a new product line. Which system is being used to practically apply organizational knowledge and add ROI to this decision?", ["Transaction Processing System", "Office Automation System", "Supply Chain Management System", "Decision Support System (DSS)"], 3, "Answer: Decision Support System (DSS)"], [10, "Which of the following is not a phase in a decision-making process?", ["Intelligence", "Design", "Choice", "Scope"], 3, "Answer: Scope"], [10, "According to the principles of Management Information Systems. which type of decisions do Executive Support Systems (ESS) primarily address?", ["Routine and highly structured operational decisions", "Non-routine decisions requiring judgment, evaluation, and insight", "Strictly day-to-day tactical management decisions", "Pre-programmed. repetitive transaction processing"], 1, "Answer: Non-routine decisions requiring judgment, evaluation, and insight"], [10, "Which of the following statements best defines object-based knowledge representation for expert systems?", ["Knowledge is represented as simple true/false statements without any attached data.", "Knowledge is represented as a network of objects. where each object contains both data and the methods that act on that data.", "Knowledge is strictly stored as a sequential list of procedural algorithms.", "Knowledge is represented purely through unstructured text files."], 1, "Answer: Knowledge is represented as a network of objects. where each object contains both data and the methods that act on that data."], [10, "A local hospital is using an Al expert system to help emergency doctors diagnose patients with severe respiratory distress. When a patient arrives. the doctor first inputs specific symptoms (e.g., sudden fever, dry cough, and shortness of breath) into the system. The inference engine immediately analyzes these available facts. checks them against thousands of nested medical rules, and progressively infers potential conditions and treatment options until it derives a set of probable diagnoses. Based on how the inference engine processes the data. which reasoning strategy is the system using?", ["Backward Chaining", "Goal-Driven Analysis", "Breadth-First Deductive Reasoning", "Forward Chaining"], 3, "Answer: Forward Chaining"], [10, "What do the letters in the acronym MOODLE stand for?", ["Modern Object-Oriented Dynamic Learning Environment", "Modular Object-Oriented Dynamic Learning Environment", "Managed Open Online Distance Learning Experience", "Modular Open Online Digital Learning Engine"], 1, "Answer: Modular Object-Oriented Dynamic Learning Environment"], [10, "Which type of managerial decision is routine, repetitive, and follows a predefined set of rules or standard operating procedures?", ["Semi-structured", "Unstructured", "Structured", "Analytical"], 2, "Answer: Structured"], [10, "Which best describes the difference between a Neural Network and a Genetic Algorithm in organizational knowledge management?", ["GAs discover hidden patterns; NNs evaluate alternative solutions", "NNs discover patterns in data; GAs evaluate and optimize alternative solutions", "NNs rely on Darwinian evolution; GAs on human nervous system models", "Both act identically but sequentially"], 1, "Answer: NNs discover patterns in data; GAs evaluate and optimize alternative solutions"], [10, "Which scenario best illustrates a semi-structured decision?", ["Adjusting monthly production purely from historical seasonal sales data", "Formulating an annual budget by rigid inflation-adjusted formulas", "Determining the most cost-effective delivery route for a new, irregular geographical zone", "Approving a standard expense report that complies with travel policy"], 2, "Answer: Determining the most cost-effective delivery route for a new, irregular geographical zone"], [11, "Zenith Corp implements a new Information System (IS) that tracks keystrokes, active window times, and web browsing habits. During the rollout. management announces that the system will generate random, automated performance audits, but the exact tracking schedule is kept strictly confidential. Initially, a few remote workers attempt to browse non-work-related websites during business hours. However, realising the logging software could be recording their activity at any given minute, employees began limiting their computer use strictly to corporate tasks. Which of the following best explains why Zenith Corp employees consistently conform to company policies despite the lack of a visible or constant human supervisor?", ["Hawthorne Effect", "The Panopticon Effect", "Groupthink", "Cognitive Dissonance"], 1, "Answer: The Panopticon Effect"], [11, "Which of the following best describes the primary objective and function of a Man-in-the- Middle attack?", ["It overloads a target server’s resources to cause a sudden disruption in legitimate user", "It secretly intercepts. reads, and potentially alters communications between a sender and a recipient without their knowledge.", "It tricks users into downloading and installing malicious software disguised as legitimate applications.", "It guesses passwords by systematically trying thousands of combinations until the correct one is found."], 1, "Answer: It secretly intercepts. reads, and potentially alters communications between a sender and a recipient without their knowledge."], [11, "Which of the following cyber threats uses manipulative communication—such as bogus emails or messages—as its primary delivery method to steal an identity?", ["Pharming", "DNS Cache Poisoning", "Malware Encryption", "Phishing"], 3, "Answer: Phishing"], [11, "Which of the following is the full form of VPN?", ["Visual Private Network", "Virtual Private Node", "Virtual Private Network", "Visual Private Node"], 2, "Answer: Virtual Private Network"], [11, "Which of the following is a primary requirement for financial institutions under the Gramm-Leach-Bliley Act (GLBA) regarding customer data?", ["To publicly disclose all customer account balances in a quarterly directory.", "To ensure the security and confidentiality of customer non-public personal information.", "To share customer financial data with unaffiliated third parties by default.", "To destroy all customer financial records after one year of inactivity."], 1, "Answer: To ensure the security and confidentiality of customer non-public personal information."], [11, "Which of the following is not considered a primary problem or objective addressed by computer forensics?", ["Recovering data from computers while preserving evidential integrity", "Finding significant information in a large volume of electronic data", "Altering recovered data to better suit a specific court argument", "Presenting the information to a court of law"], 2, "Answer: Altering recovered data to better suit a specific court argument"], [11, "Which of the following is one of the leading Unified Threat Management (UTM) vendors?", ["Fortinet", "McAfee", "Trend Micro", "Symantec"], 0, "Answer: Fortinet"], [11, "Which statement regarding the Right to Privacy is FALSE?", ["It involves the right to be left alone and free from unreasonable intrusions", "It is an absolute right that takes total precedence over the needs of society", "It must be balanced against the broader needs and interests of society", "The public’s right to know is often considered superior to an individual’s privacy"], 1, "Answer: It is an absolute right that takes total precedence over the needs of society"], [11, "What are computer cookies?", ["Small text files deposited on a computer’s hard drive to identify and track visits", "Hidden software that deletes browsing history", "Programs hackers use to steal passwords", "Temporary internet cables to web servers"], 0, "Answer: Small text files deposited on a computer’s hard drive to identify and track visits"], [11, "A server outage stops customer service. IT restores servers from backup while management lets agents process urgent requests manually with printed logs and phones. Which plans were demonstrated by IT and management respectively?", ["Both DRP", "Both BCP", "IT = BCP, management = DRP", "IT = DRP, management = BCP"], 3, "Answer: IT = DRP, management = BCP"], [12, "Which of the following is not a characteristic of a global organization?", ["Large-scale operations", "A large number of middlemen", "Multi-Language, Mono-Cultural", "High risk"], 2, "Answer: Multi-Language, Mono-Cultural"], [12, "What is the very first step a firm must take when developing an International Information Systems Architecture?", ["Designing new business procedures and reengineering", "Understanding the global environment and business drivers", "Developing the corporate global strategy", "Selecting the appropriate technology platform"], 1, "Answer: Understanding the global environment and business drivers"], [12, "GlobalTech Ine. is a global electronics manufacturer. Originally. its US headquarters made all product and marketing decisions. giving overseas branches very little freedom. Recently. the company restructured so that its subsidiaries in Japan, Germany. and India operate as highly integrated yet independent units. These local branches now have the autonomy to design specific products and marketing campaigns tailored to their own cultures, while still sharing global operational efficiencies. Based on the transition described. which of the following best represents the shift in GlobalTech Inc.'s organizational strategy?", ["From a Domestic Exporter to a Franchiser", "From a Transnational Corporation to a Multinational Corporation", "From a Franchiser toa Domestic Exporter", "From a Multinational Corporation to a Transnational Corporation"], 3, "Answer: From a Multinational Corporation to a Transnational Corporation"], [12, "An international bank's fraud detection engine continuously co-develops algorithms through real-time data sharing between teams in New York. London. and Tokyo. Each global hub simultaneously builds local patches while immediately syncing operational updates across the entire corporate infrastructure to maintain uniform security. Which systems configuration does this corporate strategy illustrate?", ["Networked", "Duplicated", "Centralized", "Decentralized"], 0, "Answer: Networked"], [12, "During which transition activity are project records, manuals, and reports stored and handed over to the support team?", ["Human resource transition", "Project documentation transition", "Infrastructure transition", "Financial transition"], 1, "Answer: Project documentation transition"], [12, "Which of the following represents the correct categorization of a Continuous Improvement activity within an outsourced support framework?", ["Root Cause Analysis", "Value Realization", "Evaluate learning effectiveness", "Deliver continuous End User Training"], 1, "Answer: Value Realization"], [12, "Breakthroughs in transportation and telecommunication costs belong to which era of globalization?", ["Globalization 1.0", "Globalization 2.0", "Globalization 3.0", "None of these"], 1, "Answer: Globalization 2.0"], [12, "In the context of Thomas Friedman’s “Flat World” theory, how does “In-forming™ primarily benefit global corporations and individuals?", ["By restricting public access to corporate data to maintain a competitive advantage.", "By replacing traditional human resources entirely with artificial intelligence.", "By automating the physical assembly and manufacturing of products in overseas factories.", "By providing everyone with the tools to build a personal information supply chain. democratising access to global knowledge."], 3, "Answer: By providing everyone with the tools to build a personal information supply chain. democratising access to global knowledge."], [12, "Which of the following falls under “back office functions” (shared services)?", ["Catering for railway passengers", "Advisory services for external clients", "Training and R&D", "Procurement of raw materials for production"], 3, "Answer: Procurement of raw materials for production"], [12, "Match: 1 Resource sharing, 2 Centralization of services, 3 Joint venture, 4 Outsourcing with descriptions A (shift non-core functions to third parties), B (single location serving the whole org), C (separate stand-alone entity sharing costs/risks), D (use plants/people of country branches for other group companies).", ["1-D, 2-B, 3-A, 4-C", "1-B, 2-A, 3-C, 4-D", "1-D, 2-B, 3-C, 4-A", "1-A, 2-B, 3-C, 4-D"], 2, "Answer: 1-D, 2-B, 3-C, 4-A"]];
+const LEC={"1": [[1, "Introduction - Part 1 of 2", ["The main thing is what information is doing is management information science and this is helping the decision makers to take decisions and plan their activities.", "It is very important for a management student to know what is planning, because after all a manager is always planning a situation such that he knows how he is going to handle the situation .", "We restrict to these first three levels for daily management issue a manager needs to know.", "Strategic business objective - Firms invest heavily in information system to achieve six strategic business objectives.", "Competitive advantage is of course very important as everywhere we always compete against each other in business terms etc."]], [2, "Introduction - Part 2 of 2", ["Information systems technology is an important tool in achieving greater efficiency and productivity.", "Information systems and technology is a major enabling tool for new products and service business models.", "These are the influencers of an organizations, so these are the elements of an organization, very important elements of organization.", "Information system, although it is all about information, but still we say that it is a very important resource.", "Information technology helps firms contract in size because it can reduce transaction cost the cost of participating in a market."]], [3, "Dimensions of Information System", ["Dimensions of the information systems is the main theme of today’s this lecture .", "It is the other three dimensions viz. organizations, management and technology which represent IS ( Information System ).", "Generally we think about these are the four major functional areas , viz. manufacturing and production, finance and accounting, human resources and sales and marketing.", "We cannot think about a life without internet for example, and all the computers we use are connected with in an organization which is called intranet or LAN ( local area network).", "That is called WAN (wide area networks) not only the country, but also for a multinational company which has got offices in many countries in the world."]], [4, "Information Management in the Digital World", ["The whole thing is that, we are using these to generate trillions of data and from data we are getting information.", "These are impacting our lives in a very big way to the extent that we are actually losing lot of privacy.", "The security angle includes identity protection, data and application protection and threat protection.", "There are plenty of advantages for Cloud technology, that is why this business is growing and people are going for more and more of Clouds offerings.", "Do not just think about advantage, advantage, advantage, but always keep track of the risk factor."]], [5, "Class Discussions and Conclusion", ["It’s a very traditional old subject, but it keeps growing and getting modernized.", "It’s not getting or getting outdated because the importance of information is growing day by day.", "If something ( activity ) happens in manufacturing it will impact the books of accounts or it will impact the data or impact the information available in other departments as well.", "These are things are becoming important nowadays because everything is very competitive.", "It is extremely important for the business leaders especially the CIO to understand which technology would be best suited for the organization, following the Jones’s often can lead to the wrong investments."]]], "2": [[6, "Database & Information Management", ["Computer system uses hierarchies; so the smallest unit of data; a computer can handle is called a bit and a group of bits represent a single character; so this is called a byte.", "A group of bits that represent a single character is called the byte and then a collection of bytes put into a word form a field.", "That is one major problem and the next problem related to traditional file system is called the problem of data inconsistency.", "A primary key is a field in a table used for key fields or unique identification; what this means is a primary key is used as a unique identifier of a particular table.", "Why this is called a foreign key is because this particular attribute that is supplier number in the part table is used to lookup or match the supplier number in the supplier table."]], [7, "Data Warehouses & Business Intelligence", ["E- R models as they are called are descriptions of the business requirements of data from the user perspective.", "A set of diagrammatic tools that are used to create these models are called entity relationship diagrams.", "An E-R diagram consists of data entities, relationships between these entities, and attributes that describe the entities and the relationships.", "Rather for a course like MIS it is important to understand, the concept of normalization and the purpose of normalization in an organization.", "Three steps extraction of data from relevant transactional databases pre processing of data and then loading the data into tables, this entire process is called ETL or extraction transformation loading."]], [8, "Introduction to Data Mining", ["Moreover mining of data has become very important, because data is a source of competitive advantage for every firm; firms have a lot of data.", "KDD is the non trivial process which means it is a very significant process of identifying valid.", "Since our post selection of data is cleaned as we have discussed and the selected cleaned data is called the target data.", "Propensity to buy is another area where data mining has a very important role, which customers are good candidates for our new long distance calling plants very important for telecom a telecom sector.", "Here we see that in every domain manufacturing retail healthcare service banking and finance, IT ITES, everywhere analytics and data mining play a very important role."]], [9, "Data Analytics Tools and Techniques", ["The fourth one is known as prescriptive analytics techniques and as the name suggests again, it recommends the right or the optimal set of actions or decisions.", "A diagnostic analysis root cause analysis is performed; it is the primary technique here.", "Finally, for prescriptive analytics, the primary tool or technique that is used is optimization.", "A variable Y, which is the dependent variable or the target variable, may be related to one variable X, which is called the independent or the explanatory variable.", "Data is defined in terms of attributes one of which is the class or the target and others are predictor variables."]]], "3": [[10, "What is ERP?", ["This is the key thing; effective usage of enterprise resource is one, the second is the last part; facilitates the flow of information between all business functions of the enterprise.", "ERP may include many software applications of on a; or a single but more complex software package that smoothly disseminates data required by two or more unique business departments.", "Why continuing on why ERP; so, the three major drivers from shift from a department level to enterprise.", "For example, a process is cupboard process known as order to cash, means from a sales order to a cash.", "An integrated suite of business applications which closely links, monitors and controls primary enterprise resources like manpower, machine, materials, methods market and money."]], [11, "Part 2 of 5", ["Oracle also merged another very popular CRM software called Siebel and with so many take overs, Oracle became next nearest challenger to SAP’s popularity.", "The software language used to develop SAP product is known as Advanced Business Application Processing (ABAP 4).", "Others who install SAP later can get advantage of these business best practices and get advantage from that.", "This is why it is called 3 tier as there are 3 levels of the IT hardware - Servers in two layers and desktop - laptops on the top layer.", "The other major benefits are: Best practices which we have already talked about; reduction in the order to cash cycle time."]], [12, "Business Benefits of ERP", ["The main thing is that it is a business program and not an IT program and IT has nothing to do with it.", "In Manufacturing, some of the major areas are - production, planning, quality assurance, order fulfilment etc.", "Managing the right inventory is one of the major challenges for the purchasing and materials department.", "Two things are important - the quantity and the date of delivery and of course, the model number and other relevant details about the particular battery make.", "This it is not the complete process but a part of the process of Order Processing."]], [13, "ERP Project Management – Challenges, Risks and Best Practices", ["Not so very critical, not so very important; but Sales, Manufacturing and Finance are important areas.", "These values are estimated based on their process knowledge and what they think would give the maximum benefit to the company.", "The major thing is about technology including both software and hardware and knowledge of business processes.", "Only experts in SAP product knowledge should finalize the Fit-Gap analysis as custom development is a major cost and should be minimized to the extent possible.", "Process redesign could be difficult sometimes as all need to get convinced of the benefits of the new processes."]], [14, "Change Management and Conclusion", ["Major changes happen when we do an ERP implementation, because it is a major restructuring program.", "This is an important role which is being played by a security person and he may not be computer educated enough or he may not be a graduate for example.", "That is why we are discussing this in this course because it is such an important aspect of a business enterprise environment.", "These are all part of the change management and value realization domain which is across the horizontal domain shown in the slide.", "Driving successful business transformation ERP project requires focus on six key focus areas."]]], "4": [[15, "Customer Relationship Management", ["One of the first extension which was developed was and is known as Customer Relationship Management.", "Often CRM is equated with automating business process related to sales and marketing and customer service, but CRM is just not technology products but it also helps in doing lot of business transformation.", "That is what is what people really look forward to because all these knowledge helps them to take future decisions.", "There are various types of call centers doing not only voice support, they are doing lot of transactions for back office work.", "These solutions provide customer support by answering the different types of customer as mentioned."]], [16, "SCM - Part – 1", ["It is a process of managing the flow of goods and services starting from the supply of raw materials.", "Upstream supply chain deals with the company’s suppliers and suppliers’ suppliers, and includes processes for managing the relationship with these partners.", "There is an upstream supply chain, and a downstream supply chain; so vendor side is upstream, while the customer side is called downstream - just a nomenclature.", "Within the enterprise itself there is a supply chain; which is called internal supply chain.", "Most of the major components are manufactured in UK, Belgium, Spain, Germany although the final assembly is done in France."]], [17, "SCM – Part - 2", ["Six Sigma is a method that provides organizations tools to improve the capability of their business processes.", "Just in time (JIT)- how it is known as is that famous acronym can be defined as an integrated set of activities designed to achieve high - volume production using minimal inventory.", "Three primary elements of lean; - just in time Purchasing, just in time Transportation, just in time Production.", "Again the quantity what is needed and when it is needed and what item is needed are the three important components of this simple philosophy.", "That is why it is so important and helps in revenue generation and cost reduction."]], [18, "Supplier Relationship Management", ["The previous section we were talking about supply chain management and suppliers or vendors are a very key component of the entire manufacturing and production set up.", "This is of course, true for large organizations, but not for medium or small organization where large organizations have different or multiple production units or multiple types of products.", "Because the organization needs these various types of material and the SRM vendors have become smart, they have also become IT savvy.", "Bids and Auctions; - Types of bids; - Public Bids, here bid invitations are made accessible to potential bidders via marketplaces on the web.", "In Catalog management we have three types of catalogs; external, internal, and third party managed."]], [19, "Product Lifecycle Maintenance", ["Product lifecycle includes: - design, manufacturing and ensuring quality of the product throughout it is lifecycle.", "Product development has become global: - That is very important and if we look at, for example, Apple iPhone.", "Drive facilitate and capture innovation:- That is very important because, innovation means lot of ideas coming and unless it is captured in a software tool, they will get lost.", "This is the product lifecycle management overall lifecycle and the types of product data information which are captured.", "That is why PLM solutions provide sophisticated search capabilities, can offer different types of search like basic searching, parametric searching, search along relationships and Full text search."]]], "5": [[20, "Information Systems for Manufacturing Management", ["In order to attain this objective or this goal various types of information will be required.", "Tactical information comprises of computing or reporting on the performance measures of machines depending on the breakdown histories and cost of repair and failure.", "For example, a company that makes three types of chairs, all of which use the same screws and bolts.", "In this case, the demand for screws and bolts depend on the total demand for all three types of chairs and their shipment schedules.", "For example, suppose say a truck; ok, it will consist on the first level assembly; consists of an engine; ok, may be say crankshaft, connecting rod, and other first level assembly components."]], [21, "Information Systems for Manufacturing Management (Contd.)", ["Another important function which is supported by this kind of information systems is for production control operation.", "Similarly, CAD systems have also provided many benefits to companies like Tata motors as well as Jaguar Land Rover; ok.", "Computer aided design systems basically also supply data for three dimensional printing 3D printing.", "The manufacturing management information system helps a firm accomplish all those objectives as mentioned before.", "We have not mentioned all the objectives, but we have basically enlisted some of the important goals of a manufacturing management function which are being supported by such kind of information system."]], [22, "Information Systems for Materials Management", ["In order to achieve that availability of the right kind of information, at the right time is very-very important to a materials manager.", "The primary objectives of MIS for supporting materials management function, are to maintain up to date stocks of all materials to immediately respond to any changes that take place in production plan.", "The materials management information system helps the materials manager to generate, immediately revised delivery schedules and purchase orders revised purchase orders may be placed on to the suppliers.", "The other related objectives of MIS for materials management are; to report on critical or excess inventory items.", "Practical information requirement consists of determining issues of items, to shops versus standard needs."]], [23, "Information System for Quality Management", ["All people participating in the value adding processes can connect to these systems and benefit from high quality real time information about all elements of the supply chain.", "Another criteria like service performance, all these are important to find out the reliability of the supplier and which is also a very important component of a vendor's overall score.", "Of course, the criteria that are used may differ by organizations depending on the organizational objective and the type and product of type of product and service that the organization is buying.", "Quality information system also helps sales and service personnel in delivering material as per customers’ quality specification.", "When goods are shipped, a certificate can be produced by the system and can be included to document that the goods comply with the customer specification."]], [24, "Information Systems for Marketing", ["Marketing information system thereby helps mangers in segmenting the whole market.", "Market segmentation, identification of key customers, these are the primary activities of marketing.", "This system helps the managers to ensure that the objectives of the operations function is also achieved.", "Marketing functions also helps the operations managers the marketing information system is tightly integrated with the operations information system to see that the organization can met its objectives.", "In every organization, there is a department which is specially meant for collecting information related to markets and that department or section is known as marketing information section."]]], "6": [[25, "Information Systems for Marketing (Contd.)", ["Marketing research subsystem is used to collect primary as well as secondary data.", "It collects and analyzes key data about, the marketing process of the organization, as well as the scenario of the market and the competitive scenario.", "This decision support systems they are embedded inside marketing information system to help marketing managers, get a primary idea about the price that can be fixed for a product.", "Upon getting that primary information, the marketing managers will apply their experience, intuition, as well as judgment in determining the final price for the product.", "The primary process associated with internal reports subsystem is the order-to-cash cycle."]], [26, "Information Systems for Sales and Distribution", ["In order that sales function can achieve these objectives information must be provided to them at the right time.", "The subsystems to support sales force automation, the sales order processing subsystem and the fourth one which is also very important; sales analysis and reporting subsystem.", "The master data which is captured and maintained in the sales and distribution information system is very important.", "One of the important assumption is that, the past trend is going to continue in the future.", "Qualitative techniques are also used for environmental forecasting, because the environment plays also a very important role in determining the likely sales for a product."]], [27, "Information Systems for Finance and Accounting", ["The finance function is responsible for managing the organizations financial assets; for example, cash, stocks, bonds and other investments with the purpose of maximizing the return on this financial assets.", "Strategic information; that means, those information’s which are required for long range planning which are important for taking financial decisions are the methods of financing.", "The system also helps managers to manage all the important transactional data which are generated on a daily basis, from withdrawals to demand draft creation.", "This subsystem also helps in revaluation of foreign currency at the end of each quarter.", "Here the FMIS that is Financial Management Information Systems helps the financial managers to ensure proper and prompt billing of the goods that are sent to the customer."]], [28, "Information Systems for Human Resource Management", ["Information systems for HRM help, helps HR managers in performing these tasks in an efficient and effective manner.", "The other dimensions of the strategic HR and the required information to support that include; employment policies, the different procedures, varieties of communications that need to be generated.", "The major goal of any HR management is to make the best use of the available human resources in the organization.", "Tactical information related to human resource management also comprises maintenance of information related to morale of personnel or employees; employee morale.", "This recruitment process is very important because it helps HR managers in finding potential employees with the skills and talent needed by the organization."]], [29, "Information Systems for Human Resource Management (Contd.)", ["Another very important module which is related sometimes comes embedded inside the payroll subsystem or interfaced with the payroll system is a Benefit Administration module.", "A major component of compensation is benefits that are received by the employees, some of the benefits offered to the employees who are working in the organizations.", "The benefits administration module can link this information or help in finding out which benefit can be availed by which employee in a particular grade.", "This is sometimes viewed as a competitive advantage particularly in large organizations and this is all supported by the benefits administration sub module.", "Employees basically self select the desired benefits from a menu and many employees perceive this flexibility as an advantage given to them."]]], "7": [[30, "Information Systems (IS) Strategy", ["A business strategy is also a vehicle or a means by which a business enterprise communicates its objectives and goals.", "Every strategy starts with a mission and for a business enterprise, this mission basically refers to the very purpose of existence of that business.", "Capitalising on that strength, they try to frame their objectives, set their goals and lay down action plans through which those objectives and goals can be met.", "Normally information systems they play a very important role in achieving a company's strategic objectives.", "The third strategic approach commonly adopted by business enterprises is to concentrate on specific market segments and that strategic approach is known as focus on niche markets companies."]], [31, "Aligning IT with Business Objectives", ["In this module, we are going to discuss alignment of information technology with the business objectives and goals of an organization.", "The most important thing for alignment of information technology with business goals is strategic system analysis.", "In here, managers’ primary goal is to use information systems effectively for deriving competitive advantage.", "The purpose of strategic systems analysis is to identify the types of information systems which can provide a long-range advantage to the firms.", "In doing strategic systems analysis, managers should ask various types of questions including what is the structure of the industry in which the firm is located."]], [32, "Balanced Score Card", ["A balanced score card focuses on measurable outcomes on four dimensions of a business’s performance.", "Each of these dimensions uses key performance indicators known as KPIs to understand how well an organization is performing in any of these dimensions at any point in time.", "For example, one key indicator of how well an online retail firm is meeting its customer performance objectives is the average length of time required to deliver a package to consumer.", "The important thing is selecting a balanced set of measures, aligning action plans to the firm’s objectives and linking off organizational objectives to individual goals.", "Sometimes the key result areas of the individuals, they can be linked with the organizational objectives."]], [33, "Data Centers, Virtualization and Cloud Computing", ["On premises, data centers, virtualization and cloud computing are different types of information technology infrastructures or computing systems.", "A data center is mainly used in organizations that run many different types of applications and have complex workloads.", "Basically, this concept refers to one where software replaces hardware in a way that a virtual machine is accessible to provide the necessary computing power.", "Facilities that are available through this kind of virtual architectures consists of different kinds of servers, storage facilities, backup facilities, network and disaster recovery servers.", "This concept is known as scalability and load balancing is one of the primary characteristics of virtualization."]], [34, "Cloud Computing and Selection of Cloud Vendor", ["Today’s topic is on types of cloud computing and selection of cloud services provider that is selection of cloud vendor.", "The next important thing related to delivery models particularly infrastructure as a service is that in here the cloud computing infrastructure is delivered as an on-demand service.", "Here, data shared among clouds, systems, various apps, regardless of the data source or storage location that is very important.", "Assessment and selection of the right cloud services provider is an important step strategic decision for business leaders.", "It is important to investigate each service provider’s offerings prior to subscribing."]]], "8": [[35, "Introduction to E – Commerce", ["E-commerce so there are 2 important phrases one is in red and the other is in blue.", "Customization refers to changing the delivered product or service based on a user’s preference or past purchases.", "Personalization was primarily related to messages, whereas customization refers to actually changing the product or service based on a user’s preference or past purchases.", "Moving back we had skipped 2 very important and interesting aspects or unique features of e-commerce.", "Network effect plays a very important role in the sustainability of e-commerce websites."]], [36, "B2C Business Models", ["Moving on revenue models; there are five primary revenue models in an ecommerce business.", "Advertisements is one of the primary sources of revenue for most ecommerce businesses.", "Transaction fees go hand in hand with another kind of fee for these market places, which is known as the listing fee.", "Coming to the next variant of a portal is the vortal or the vertical portal; it is called a specialized portal or a vortal.", "The prior the primary revenue model for them is subscription fee; they also have advertisements as another additional revenue stream, and they may also have affiliate referral fees."]], [37, "B2B Business Models", ["Therefore, the B2B e-commerce market is extremely important and a lot of emphasis should be given or is given on this particular market.", "Say mid 1990s onwards we had e-commerce websites B2B e-commerce websites followed by two very important technology platforms which will be the primary focus of today’s discussion.", "They are very important network technologies to support communication, but among only a limited set of partners.", "That is in so that is called a private market where everybody is not free to join, only those who are invited can join.", "For indirect inputs and spot purchasing the net marketplaces are called e-distributors."]], [38, "Unique E – Commerce Business Models", ["A portion of these unique business models could be B2C, portion could be catering to B2B and so on.", "The delivery schedule and timings of goods are critical and require high degree of commitment in B2B since they tie to into organizational supply chains.", "There are certain disadvantages, but of course, the advantages do outweigh the most of the disadvantages in the context of B2B to crowd sourcing right.", "Moving on to the next business model, this is a very interesting one and it is called online shopping mall or store builder.", "Coupon refers to a deal of the day websites that feature discounted gift certificates usable at local or national companies."]], [39, "Social Commerce & M - Commerce", ["Marketers should take advantage of the fact, that people are enmeshed in social networks, share interests and values and communicate and influence one another.", "We have Facebook, Instagram, Twitter, LinkedIn, Pinterest, so all of these play a very important role in e-commerce.", "Social search: this is another very important feature of any social commerce platform.", "Benefits of mobile commerce include the ability to make payments without the use of a computer or access to the internet and without a credit card.", "These three very important location based services, geo social service, geo advertising service and geo information service use the power of mobile phones and global positioning system or GPS."]]], "9": [[40, "Cloud Computing Part – I", ["Managed services this means that since the services are provided by a cloud service provider, the services are also maintained and managed by them.", "These are overall some of the benefits of cloud computing over traditional computing infrastructure; ok.", "The first part is the characteristics which are the benefits of cloud computing over traditional computing architecture.", "Why this is called the most mature because this is an advancement over the other two.", "In this particular session, we have spoken about the challenges, with respect to challenges as well as benefits with respect to cloud computing."]], [41, "Cloud Computing Part - II", ["We had also spoken about the advantages of cloud computing over traditional computing.", "Moving ahead the fourth category is community cloud which is a shared computing infrastructure setup as either a public, private or hybrid cloud used by a specified community of users, this is very important.", "What this means is a provider may migrate to a subscribers migrate a subscribers workload could be processing could be data, anywhere at any time.", "That is that might be a disadvantage unless the provider has offered some location restriction policies which are rare.", "We have spoken detail about the advantages and disadvantages of private cloud public cloud."]], [42, "Internet of Things Part – I", ["Internet of things consists of large number of devices that are connected –via- the internet to sense and respond to conditions in their environment.", "These devices are typically sensors and actuators that exchange information with the controlling software for a defined purpose.", "These are some of the different types of sensors that we have seen around us, or the different sensors that are inbuilt into various gadgets or devices.", "Again similar to sensors there are different types of actuators, we have electrical actuators motors that convert electrical signals to mechanical motion, change the position of a valve.", "The third layer is called the management services layer, which is a very important layer because this particular layer controls the functionality of the entire IoT system."]], [43, "Internet of Things Part - II", ["IOT devices have applications in variables we have seen, so entertainment, fitness, smart watches, hand bands, for location and tracking everywhere, IOT devices have a very important role.", "The IoT ecosystem includes all the components and players that enable businesses governments and consumers to connect to their IoT devices.", "The ecosystem includes core that is hardware, software, connectivity, standards and application services and supporting services.", "A machine to machine service provider has very important role to play, because multiple machines or devices could interact in an IoT system.", "Sensor and actuation service broker of course, goes without saying that very very important because sensors and actuators are the core devices."]], [44, "Internet of Things Part – III", ["Third benefit is with respect to greater access and control of internet connected devices.", "Here we have mentioned the benefits of internet of things and we have discussed all of them with examples.", "Some of the challenges very obvious and very important challenges related to IOT are, with respect to data management.", "Privacy by design is a process that calls for proactive consideration of privacy objectives and aims from the start, then continues throughout the design and delivery process of products and related actions.", "These are some examples of legal challenges there could be a lot more, but these are the primary ones that we wanted to highlight in this course."]], [45, "Big Data and other Emerging Technologies", ["The second represents the rate at which the data flows or the rate at which the data is available, which is again very high and the third refers to the variety of data.", "The data set that we have or the data set in question has a lot of variety, which means it comprises unstructured semi structured as well as structured data.", "We had mentioned that there are three primary characteristics that a data set should possess in order to be qualified as big data.", "XML stands for extensible markup language and JSON stands for JavaScript Object Notation languages.", "A data that can be used to process for valuable information is called signal, the rest is considered as noise."]]], "10": [[46, "Knowledge Management Systems (KMS)", ["The concepts that will be covered are basic concepts of knowledge management systems, knowledge management value chain, and the types of knowledge management systems, which are basically used in practice.", "Thereby, knowledge is situational, implies that knowledge is conditional, knowing when to apply a procedure is just as important as knowing the procedure.", "Knowledge acquisition, knowledge storage, knowledge dissemination and knowledge application, these are the 4 important stages of the knowledge management value chain.", "Then as we had already mentioned; communities of practices are the primary source for generation of knowledge, creation of knowledge, thereby building organizational and management capital.", "Enterprise-wide knowledge management systems; basically, this refers to general purpose firm wide efforts to collect, store, distribute, and apply digital content and knowledge."]], [47, "Decision Support Systems", ["Structured decision problems are those where we have a very well defined objective or well defined objectives.", "The objective cannot be set rightly, very difficult to set specific objectives for the problem at hand.", "The models that are used in decision support systems, consists of finding out relationships between major elements of the systems that we are going to study.", "Choosing the right objective is the most important thing in trying to find out an effective solution.", "Having chosen the right objective or a relevant objective, then we try to find out a satisfying solution for the same."]], [48, "Executive Support System", ["EIS help managers to identify factors that are critical to accomplish strategic objectives that means, the critical success factors for framing strategies are identified with the help of ESS.", "Executive support systems, they can display output in terms of trend analysis of the data that is captured in the system whether the key performance indicators are going up over time or going down.", "Another important aspect of executive support systems is the drill down capability.", "Drill down capability means, suppose the system has displayed or presented a particular value of a key process indicator or some result has been presented to the executive or the top level manager.", "The KPIs, KPIs means the key performance indicators are displayed graphically or through charts on the screen of the senior managers."]], [49, "Expert Systems", ["Based on artificial intelligence, these systems rely on intelligent techniques for capturing mainly tacit knowledge that is undocumented knowledge in a very specific and limited domain of human expertise.", "Then recommends the various types of medicines before the patient is being taken to a doctor’s room.", "This user interface program helps the end user to communicate with the system because, it requires some kind of interaction.", "Software resources comprises of the inference engine, the user interface programs and the explanation programs.", "The strategy that is used to search through the knowledge base is basically what is known as the inference engine."]], [50, "Learning Management Systems (LMS)", ["Learning management system provides the tools, which are necessary for management, delivery, tracking and assessment of various types of employee learning and associated training.", "The systems assemble and deliver learning content and as desired it also measures the effectiveness of learning that is very important.", "All these things related to educational courses, training programs, as well as different learning and development programs, particularly business houses they take advantage of learning management systems.", "To summarize learning management system can be defined as a software application, which is mainly based on web based technology and used to plan implement and assess a specific learning process.", "Other advantages that are associated with the use of such systems include number one, the content of these systems."]]], "11": [[51, "Ethical and Social Issues in MIS – I", ["Ethics refers to the principles of right and wrong that individuals use to make choices to guide their behaviour.", "Though privacy refers to the right to be left alone and the right to be free from unreasonable personal intrusions it the right to privacy is not absolute.", "What NORA does is, NORA, the NORA the term NORA stands for Non Obvious Relationship Awareness.", "What NORA does is, it does name standardization, matching and merging to come up with what is called NORA alert, out of data from all of these disparate data sources.", "On the contrary opt in model of information informed consent may refers to the fact that by default advertisers will not be collecting information from an individual once the individual browses the internet."]], [52, "Ethical and Social Issues in MIS – II", ["The first one pertains to HIPAA, which stands for Health Insurance Portability and Accountability Act.", "The first one HIPAA stands for Health Insurance Portability and Accountability Act.", "Another purpose of GDPR is to reshape the way organizations across the region approach data privacy.", "Intellectual property refers to creations of the mind such as individual inventions, literary and artistic works, symbols, names, images, and designs, used in commerce.", "The creator or owner must take care to bind employees and customers with non disclosure agreements and to prevent the secret from falling into the public domain very important."]], [53, "Security Issues in MIS – I", ["Along with this, with it, there is another very-very important motivation and that is fun, thrill or challenge.", "Of course, the first three intentions are motivations that we have discussed so far are not so positive in nature, they are they are kind of negative in nature.", "Based on these four motivations; of course, the first three are not for, not positive motivations the last one is a positive motivation.", "Availability of data is extremely important and it is the third most important pillar of information security; especially during times when they should actually be available.", "This; so in 2011; this the first one here, the first logo stands for anonymous group of hacktivists."]], [54, "Security Issues in MIS – II", ["Message includes a link which takes the user to a fake site that resembles the authentic website.", "Encryption means encryption uses mathematics-based program and a secret key to produce a string of characters that is unintelligible.", "Its un intelligible; therefore, it cannot be deciphered by a hacker or a malicious entity, unless the hacker also has ways and means to decipher it right.", "There are some algorithms which are used to encrypt the original plain text into a format which is known as the Cipher text.", "Here there is a concept of public key, private key and keys; but again, keys are a little technical in nature."]], [55, "Security Issues in MIS – III", ["In order to remain effective antivirus software must be continuously updated.", "Therefore, it is very important to have dynamic anti-viruses which are constantly updated with new viruses that keep coming.", "These popular antivirus software also come up also have enhanced their products to include protection against spyware.", "Everybody all organizations understood the benefits of UTMs and tried to engage UTMs into their systems.", "It is very important to have a comprehensive organizational approach to see to manage the security."]]], "12": [[56, "Managing Global Organization – Globalization (Part 1)", ["International business refers to trade of good, service, technology, capital and knowledge across national borders and at a global or transnational life.", "After internet, it is next is communication, the next layer, the most important layer is internet connectivity.", "Globalization continue and globalization is a process of business integration among people companies and governments across the world.", "Since we sensed or smelled something is wrong, maybe there is some political interest or intent behind such major initiative because they are investing lot of money in this.", "Anything Japan will buy if it is a Japanese product, they will not buy anything else that is called particularism."]], [57, "Global Strategies and Business Organization", ["Four main global strategies: domestic exporter, multinational, franchisors and transnational.", "The one of the main thing finance is something the money is something which is controlled centrally generally because they are holding say 40 percent share or 30 percent share or maybe sometimes 50, 60, 70.", "We need some change in our ERP software for example, which is a very important part of the management system.", "It is very important role because he directly reports to the CEO of that organization and everything has known, we have been talking that, the importance of information system.", "Mainly the information domain, IT’s, systems and of course, there are HR systems, but the primary thing is IT system."]], [58, "Shared Services", ["Seamless and real time communication play key role in effectiveness of MIS for success of shared services.", "Many functions can be operated through shared services the major one which we actually shared services started with the whole movement is procurement.", "Major benefits of shared services continue it promotes the consolidation of scares resources with specific technology skills that can be shared across business units.", "Ownership and control remains with organization of course; an ownership will remain in the organization because now it is set in one location centered.", "India, Philippines: cheap labor strong knowledge in English the advantage is global leaders in business process outsourcing, large technical pool, very good IT and telecom infrastructure."]], [59, "Offshoring/ Transitioning Global IT Systems", ["The project team will be replaced by the support, team the maintenance team, the sustaining team, who will do the sustaining, so they need to have a knowledge that is called that is also transitioning.", "That the accent problem is always there, the accent from a South Indian speaking person or a North Indian or East India, within India also we have got so many types of accents.", "This is called human resource transition because when they come over from that company X to join IBM or TCS they say HR transition because they will now come and join TCS.", "These are the various types of documents which are generally to be in the knowledge transition to the document transition during a transition process of a IT systems.", "Then finally, through network there is some GDC means stands for Global Delivery Center that is what the centers we call in India, located in India the global delivery centers."]], [60, "Globalization of Corporates in a Flat World", ["There could be many other supplies, but they are the major one of the major ones.", "From two characters it was made into four character, so that was known as Y2K, Y2 stands for year 2000, Y2, the year 2000 so.", "Legal processing is been done in a big way KPO knowledge it is LPO, it is called LPO, Legal Process Outsourcing.", "Another thing is we it is called instead of BPO we business process, now we KPO – the Knowledge Process Outsourcing.", "They have got thousands and thousands of vendors and suppliers, and thousands and thousands of types of materials have been supplied every day to various Wal-Mart stores."]]]};
+document.getElementById('nq').textContent=Q.length;
+document.getElementById('nav').innerHTML=W.map(w=>`<a href="#w${w.n}">Wk ${w.n}</a>`).join('')+'<a href="#learn" style="color:#4fd8b0">⚡ Quiz</a>';
+document.getElementById('notes').innerHTML=W.map(w=>`<section class="wk" id="w${w.n}"><div class="wh"><span class="wn">Week ${String(w.n).padStart(2,'0')}</span><span class="wt">${w.t}</span></div>
+<div class="mn"><i>🧠 Mnemonic</i><strong>${w.m}</strong><p>${w.mp}</p></div>
+<table><thead><tr><th>Topic</th><th>Key point</th></tr></thead><tbody>${w.r.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}</tbody></table>
+<div class="tr"><i>⚡ Exam trap</i>${w.x}</div><div class="lc"><h4>🎓 Lecture-wise notes</h4>${(LEC[w.n]||[]).map(l=>`<details><summary>L${l[0]} · ${l[1]}</summary><ul>${l[2].map(s=>`<li>${s}</li>`).join('')}</ul></details>`).join('')}</div></section>`).join('');
+let pool=[],i=0,c=0,wr=0,s=0,cur='all';
+const fl=document.getElementById('fl');
+fl.innerHTML=['all',...W.map(w=>w.n)].map(k=>`<button class="fb${k=='all'?' on':''}" onclick="go('${k}',this)">${k=='all'?'All':'Week '+k}</button>`).join('');
+function sh(a){a=[...a];for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]]}return a}
+function go(k,b){cur=k;if(b){document.querySelectorAll('.fb').forEach(x=>x.classList.remove('on'));b.classList.add('on')}
+pool=sh(k=='all'?Q:Q.filter(q=>q[0]==k));i=c=wr=s=0;sc();document.getElementById('res').style.display='none';document.getElementById('card').style.display='block';load()}
+function sc(){sC.textContent=c;sW.textContent=wr;sS.textContent=s+(s>=3?'🔥':'')}
+function load(){if(i>=pool.length){fin();return}const q=pool[i];
+mt.textContent=`Week ${q[0]} · Q${i+1}/${pool.length}`;qt.textContent=q[1];fbk.style.display='none';nx.style.display='none';
+pg.style.width=Math.round(i/pool.length*100)+'%';
+ow.innerHTML='';q[2].forEach((o,k)=>{const b=document.createElement('button');b.className='o';b.innerHTML=`<b>${'ABCD'[k]}</b><span></span>`;b.lastChild.textContent=o;b.onclick=()=>pick(k,q);ow.appendChild(b)})}
+function pick(k,q){const bs=ow.children;[...bs].forEach(b=>b.disabled=true);const ok=k==q[3];snd(ok);
+if(ok){c++;s++;bs[k].classList.add('c')}else{wr++;s=0;bs[k].classList.add('w');bs[q[3]].classList.add('c')}
+fbk.style.display='block';fbk.style.background=ok?'rgba(79,216,176,.08)':'rgba(247,106,138,.08)';fbk.style.border='1px solid '+(ok?'#4fd8b0':'#f76a8a');
+fbk.textContent=(ok?'✅ Correct! ':'❌ Not quite. ')+q[4];sc();i++;nx.style.display='block'}
+const correctSound = new Audio('duolingo-correct.mp3');
+const wrongSound = new Audio('duolingo-wrong.mp3');
+correctSound.preload = 'auto';
+wrongSound.preload = 'auto';
+function snd(ok){
+  const audio = ok ? correctSound : wrongSound;
+  try {
+    audio.pause();
+    audio.currentTime = 0;
+    const playPromise = audio.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(err => console.warn('Could not play quiz sound. Check that the MP3 file is beside the HTML file.', err));
+    }
+  } catch (err) {
+    console.warn('Could not play quiz sound. Check that the MP3 file is beside the HTML file.', err);
   }
 }
-
-/* =========================================
-   QUIZ LOGIC
-   ========================================= */
-
-function go(k, b) {
-  cur = k;
-
-  if (b) {
-    document.querySelectorAll('.fb').forEach(x =>
-      x.classList.remove('on')
-    );
-    b.classList.add('on');
-  }
-
-  pool = sh(k == 'all' ? Q : Q.filter(q => q[0] == k));
-
-  i = c = wr = s = 0;
-
-  sc();
-
-  document.getElementById('res').style.display = 'none';
-  document.getElementById('card').style.display = 'block';
-
-  load();
-}
-
-function sc() {
-  document.getElementById('sC').textContent = c;
-  document.getElementById('sW').textContent = wr;
-  document.getElementById('sS').textContent =
-    s + (s >= 3 ? '🔥' : '');
-}
-
-function load() {
-  if (i >= pool.length) {
-    fin();
-    return;
-  }
-
-  const q = pool[i];
-
-  document.getElementById('mt').textContent =
-    `Week ${q[0]} · Q${i + 1}/${pool.length}`;
-
-  document.getElementById('qt').textContent = q[1];
-
-  const fbk = document.getElementById('fbk');
-  const nx = document.getElementById('nx');
-  const ow = document.getElementById('ow');
-
-  fbk.style.display = 'none';
-  nx.style.display = 'none';
-  nx.disabled = false;
-
-  document.getElementById('pg').style.width =
-    Math.round(i / pool.length * 100) + '%';
-
-  ow.innerHTML = '';
-
-  q[2].forEach((o, k) => {
-    const b = document.createElement('button');
-
-    b.className = 'o';
-    b.innerHTML = `<b>${'ABCD'[k]}</b><span></span>`;
-
-    b.lastChild.textContent = o;
-
-    b.onclick = () => pick(k, q);
-
-    ow.appendChild(b);
-  });
-}
-
-function pick(k, q) {
-  const ow = document.getElementById('ow');
-  const bs = ow.children;
-
-  /*
-    Prevent multiple answers on the same question.
-    This also prevents repeated sound playback.
-  */
-  if ([...bs].some(b => b.disabled)) return;
-
-  unlockSounds();
-
-  [...bs].forEach(b => b.disabled = true);
-
-  const ok = k === q[3];
-
-  if (ok) {
-    c++;
-    s++;
-
-    bs[k].classList.add('c');
-
-    // Correct answer: play Duolingo correct sound.
-    playSound('correct');
-  } else {
-    wr++;
-    s = 0;
-
-    bs[k].classList.add('w');
-    bs[q[3]].classList.add('c');
-
-    // Wrong answer: play Duolingo wrong sound.
-    playSound('wrong');
-  }
-
-  const fbk = document.getElementById('fbk');
-  const nx = document.getElementById('nx');
-
-  fbk.style.display = 'block';
-
-  fbk.style.background = ok
-    ? 'rgba(79,216,176,.08)'
-    : 'rgba(247,106,138,.08)';
-
-  fbk.style.border = '1px solid ' +
-    (ok ? '#4fd8b0' : '#f76a8a');
-
-  fbk.textContent =
-    (ok ? '✅ Correct! ' : '❌ Not quite. ') + q[4];
-
-  sc();
-
-  i++;
-
-  nx.style.display = 'block';
-}
-
-function nxt() {
-  load();
-}
-
-function fin() {
-  document.getElementById('card').style.display = 'none';
-  document.getElementById('res').style.display = 'block';
-
-  const p = Math.round(c / Math.max(1, c + wr) * 100);
-
-  document.getElementById('re').textContent =
-    p >= 90 ? '🏆' : p >= 70 ? '🎯' : '📚';
-
-  document.getElementById('rt').textContent =
-    p >= 90 ? 'Outstanding!' :
-    p >= 70 ? 'Great work!' :
-    'Keep practicing!';
-
-  document.getElementById('rs').textContent =
-    `${c}/${c + wr} correct (${p}%)`;
-
-  document.getElementById('pg').style.width = '100%';
-}
-
-/* Start the quiz */
+function nxt(){load()}
+function fin(){card.style.display='none';res.style.display='block';const p=Math.round(c/Math.max(1,c+wr)*100);
+re.textContent=p>=90?'🏆':p>=70?'🎯':'📚';rt.textContent=p>=90?'Outstanding!':p>=70?'Great work!':'Keep practicing!';rs.textContent=`${c}/${c+wr} correct (${p}%)`;pg.style.width='100%'}
 go('all');
-</script>
-</body>
-</html>
+</script></body></html>
